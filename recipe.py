@@ -17,11 +17,22 @@ class Recipe:
     def setDescription(self,description):
         self.description = description
 
-# r1 = Recipe("Lasagne")
+    def getNoServings(self):
+        return self.noServings
+    
+    def setNoServings(self, noServings):
+        if int(noServings):
+            self.noServings = noServings
+            print("This is an integer")
+        else:
+            print("Please input an integer")
+
+
+r1 = Recipe("Lasagne")
 # r1.setDescription("Layers of pasta cheese and tomato sauce")
 # print(r1.getDescription())
-
-
+r1.setNoServings(5)
+ 
 
 
 
