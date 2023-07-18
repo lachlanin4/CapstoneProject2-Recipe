@@ -42,12 +42,18 @@ class Recipe:
     def set_ingredients(self,ingredients):
         self.ingredients.append(ingredients)
 
+    def remove_ingredient(self,ingredient):
+        self.ingredients.remove(ingredient)
+
+
     def get_instructions(self):
         return self.instructions
 
     def set_instructions(self, instructions):
         self.instructions.append(instructions)
         
+    def remove_instruction(self, instruction):
+        self.instructions.remove(instruction)
         
 
 
@@ -57,9 +63,13 @@ r1 = Recipe("Lasagne")
 # r1.set_description("Layers of pasta cheese and tomato sauce")
 # print(r1.get_description())
 #r1.set_no_servings(5)
-# r1.set_ingredients("tomato")
-# r1.set_ingredients("tomato")
-# print(r1.get_ingredients())
+r1.set_ingredients("tomato")
+r1.set_ingredients("tomato")
+r1.set_ingredients("cheese")
+print(r1.get_ingredients())
+r1.remove_ingredient("cheese")
+print(r1.get_ingredients())
+
 
  
 
