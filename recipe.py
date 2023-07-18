@@ -9,7 +9,7 @@ class Recipe:
         self.no_servings = None
         self.calories_per_portion = None
         self.ingredients = []
-        self.instructions = None
+        self.instructions = [] #List or string data type?
 
     def get_description(self):
         return self.description
@@ -41,6 +41,12 @@ class Recipe:
     
     def set_ingredients(self,ingredients):
         self.ingredients.append(ingredients)
+
+    def get_instructions(self):
+        return self.instructions
+
+    def set_instructions(self, instructions):
+        self.instructions.append(instructions)
         
         
 
