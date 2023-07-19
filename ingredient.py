@@ -21,3 +21,7 @@ class Ingredient:
     @property
     def amount(self):
         return self._amount
+
+    @property
+    def units(self):
+        return self._units
