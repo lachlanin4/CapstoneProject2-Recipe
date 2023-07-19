@@ -41,3 +41,7 @@ class Ingredient:
     @units.setter
     def units(self, units: str):
         self._units = units
+
+    @alergens.setter
+    def alergens(self, alergens: []):
+        self._alergens = alergens
