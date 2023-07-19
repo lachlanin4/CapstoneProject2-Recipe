@@ -37,3 +37,7 @@ class Ingredient:
     @amount.setter
     def amount(self, amount: float):
         self._amount = amount
+
+    @units.setter
+    def units(self, units: str):
+        self._units = units
