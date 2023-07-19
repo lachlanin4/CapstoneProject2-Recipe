@@ -45,3 +45,7 @@ class Ingredient:
     @alergens.setter
     def alergens(self, alergens: []):
         self._alergens = alergens
+
+    @callories.setter
+    def callories(self, callories: float):
+        self._callories = callories
