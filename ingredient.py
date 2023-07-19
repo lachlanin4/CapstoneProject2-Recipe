@@ -29,3 +29,7 @@ class Ingredient:
     @property
     def alergens(self):
         return self._alergens
+
+    @property
+    def callories(self):
+        return self._callories
