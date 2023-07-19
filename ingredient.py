@@ -6,7 +6,12 @@ class Ingredient:
     associated with the amount."""
 
     def __init__(
-        self, name: str, amount: float, units: str, alergens: [str], callories: float
+        self,
+        name: str,
+        amount: float,
+        units: str,
+        alergens: list[str],
+        callories: float,
     ):
         self._name_of_ingredient = name
         self._amount = amount
