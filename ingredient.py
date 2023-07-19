@@ -13,3 +13,7 @@ class Ingredient:
         self._units = units
         self._alergens = alergens
         self._callories = callories
+
+    @property
+    def name(self):
+        return self._name_of_ingredient
