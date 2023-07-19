@@ -19,20 +19,15 @@ class Recipe:
     def get_no_servings(self):
         return self._no_servings
     
-    def set_no_servings(self, no_servings):
-        if int(no_servings):
-            self._no_servings = no_servings
-        else:
-            print("Please input an integer")
+    def set_no_servings(self, no_servings:int):
+        self._no_servings = no_servings
+
 
     def get_calories_per_portion(self):
         return self._calories_per_portion
     
-    def set_calories_per_portion(self, calories_per_portion):
-        if int(calories_per_portion):
-            self._calories_per_portion = calories_per_portion
-        else:
-            print("Please input an integer")
+    def set_calories_per_portion(self, calories_per_portion:int):
+        self._calories_per_portion = calories_per_portion
     
     def get_ingredients(self):
         return self._ingredients
