@@ -25,3 +25,7 @@ class Ingredient:
     @property
     def units(self):
         return self._units
+
+    @property
+    def alergens(self):
+        return self._alergens
