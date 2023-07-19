@@ -33,3 +33,7 @@ class Ingredient:
     @property
     def callories(self):
         return self._callories
+
+    @amount.setter
+    def amount(self, amount: float):
+        self._amount = amount
