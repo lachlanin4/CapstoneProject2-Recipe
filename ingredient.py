@@ -17,3 +17,7 @@ class Ingredient:
     @property
     def name(self):
         return self._name_of_ingredient
+
+    @property
+    def amount(self):
+        return self._amount
