@@ -1,86 +1,62 @@
-import tkinter as tk
-
 #Recipe Class
 class Recipe:
 
 
     def __init__(self, title):
-        self.title = title
-        self.description = None
-        self.no_servings = None
-        self.calories_per_portion = None
-        self.ingredients = []
-        self.instructions = [] #List or string data type?
+        self._title = title
+        self._description = None
+        self._no_servings = None
+        self._calories_per_portion = None
+        self._ingredients = []
+        self._instructions = []
 
     def get_description(self):
-        return self.description
+        return self._description
     
     def set_description(self,description):
-        self.description = description
+        self._description = description
 
     def get_no_servings(self):
-        return self.noServings
+        return self._no_servings
     
     def set_no_servings(self, no_servings):
         if int(no_servings):
-            self.no_servings = no_servings
-            #print("This is an integer")
+            self._no_servings = no_servings
         else:
             print("Please input an integer")
 
     def get_calories_per_portion(self):
-        return self.calories_per_portion
+        return self._calories_per_portion
     
     def set_calories_per_portion(self, calories_per_portion):
         if int(calories_per_portion):
-            self.calories_per_portion = calories_per_portion
+            self._calories_per_portion = calories_per_portion
         else:
             print("Please input an integer")
     
     def get_ingredients(self):
-        return self.ingredients
+        return self._ingredients
     
     def set_ingredients(self,ingredients):
-        self.ingredients.append(ingredients)
+        self._ingredients.append(ingredients)
 
     def remove_ingredient(self,ingredient):
-        self.ingredients.remove(ingredient)
+        self._ingredients.remove(ingredient)
 
     def display_ingredients(self):
-        print(self.get_ingredients())
+        print(self.get_ingredients()) #return a pretty string instead
 
     def get_instructions(self):
-        return self.instructions
+        return self._instructions
 
     def set_instructions(self, instructions):
-        self.instructions.append(instructions)
+        self._instructions.append(instructions)
         
     def remove_instruction(self, instruction):
-        self.instructions.remove(instruction)
+        self._instructions.remove(instruction)
         
 
 
-#Below is all test code
-
-r1 = Recipe("Lasagne")
-r1.set_description("Layers of pasta cheese and tomato sauce")
-print(r1.get_description())
-r1.set_no_servings(5)
-r1.set_ingredients("tomato")
-r1.set_ingredients("tomato")
-r1.set_ingredients("cheese")
-print(r1.get_ingredients())
-r1.remove_ingredient(2)
-print(r1.get_ingredients())
-r1.display_ingredients()
-
-
-window =tk.Tk()
-label = tk.Label(text = r1.get_ingredients())
-label.pack()
-label2 = tk.Label(text = r1.display_ingredients()) #tkinter needs text= to display so this did not work
-label2.pack()
-window.mainloop()
 
 
 
