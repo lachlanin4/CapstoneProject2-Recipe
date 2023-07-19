@@ -49,3 +49,13 @@ class Ingredient:
     @callories.setter
     def callories(self, callories: float):
         self._callories = callories
+
+    def pretty_format(self) -> str:
+        # Creates a pretty formated description of the ingredient
+        if len(self._alergens) > 0:
+            alergen_list = ", ".join(self._alergens)
+            return_string = f"{self._amount} {self._units} of {self._name_of_ingredient} containing {self._callories} callories - warning contains: {alergen_list}"
+        else:
+            return_string = f"{self._amount} {self._units} of {self._name_of_ingredient} containing {self._callories} callories"
+
+        return return_string
