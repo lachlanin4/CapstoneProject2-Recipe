@@ -35,16 +35,19 @@ class Recipe:
     def set_ingredients(self,ingredients):
         self._ingredients.append(ingredients)
         if len(set(self._ingredients)) != len(self._ingredients):
-            self._ingredients.remove(ingredients) #I have tested this and it only removes the recently added ingredient
+            self.remove_ingredient(ingredients) #I have tested this and it only removes the recently added ingredient
             return False
     
     def remove_ingredient(self,ingredient):
         self._ingredients.remove(ingredient)
+        #[x for x in self._ingredients if x is not None] #tried to use list comprehension to get rid of the none value in self._ingredients did not succeed
         #Do I need to prevent this removing duplicates if I have already prevented duplication with the set ingredients validation
 
     def display_ingredients(self):
-        print(self.get_ingredients()) #return a pretty string instead
-
+        for ingredient in self._ingredients:
+            print(ingredient) #When i use return it only returns the first value tomato I am not sure why
+        #Not sure how to return this as a string
+    
     def get_instructions(self):
         return self._instructions
 
@@ -53,9 +56,10 @@ class Recipe:
         
     def remove_instruction(self, instruction):
         self._instructions.remove(instruction)
-        
 
-
-
+    def pretty_format(self):
+        return f"This is the recipe for {self._title}.\n{self._description}\nThe ingredients are: {self.display_ingredients()}"
+        #Does not display ingredients correctly as display_ingredients doesn't work
+    
 
 
