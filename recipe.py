@@ -34,9 +34,13 @@ class Recipe:
     
     def set_ingredients(self,ingredients):
         self._ingredients.append(ingredients)
-
+        if len(set(self._ingredients)) != len(self._ingredients):
+            self._ingredients.remove(ingredients) #I have tested this and it only removes the recently added ingredient
+            return False
+    
     def remove_ingredient(self,ingredient):
         self._ingredients.remove(ingredient)
+        #Do I need to prevent this removing duplicates if I have already prevented duplication with the set ingredients validation
 
     def display_ingredients(self):
         print(self.get_ingredients()) #return a pretty string instead
@@ -50,7 +54,6 @@ class Recipe:
     def remove_instruction(self, instruction):
         self._instructions.remove(instruction)
         
-
 
 
 
