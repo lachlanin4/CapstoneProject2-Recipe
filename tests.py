@@ -8,8 +8,8 @@ recipe1 = Recipe(name = 'Spaghetti Carbonara', instructions = 'cook',  ingredien
 recipe2 = Recipe(name = 'Chicken Curry', instructions = 'cook',  ingredients = ['chicken', 'curry powder', 'coconut milk'])
 
 # Using the setter to add recipes
-recipe_manager.add_recipe = recipe1
-recipe_manager.add_recipe = recipe2
+recipe_manager.add_recipe(recipe1)
+recipe_manager.add_recipe(recipe2)
 
 print("Original recipes:")
 print(recipe_manager.display_recipes)
