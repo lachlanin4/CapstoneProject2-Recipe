@@ -9,8 +9,11 @@ class RecipeManager:
             print(recipe)
             return self.recipes
             
-    def display_recipes(self):
-      return str(self.recipes)
+    def stringify_recipes(self):
+        recipes_str = str("")
+        for recipe in self.recipes:
+            recipes_str += ', ' + recipe.pretty_description()
+        return str(recipes_str)
 
     def add_recipe(self, recipe):
         self.recipes.append(recipe)
