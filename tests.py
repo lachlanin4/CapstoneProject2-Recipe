@@ -4,8 +4,8 @@ from recipe import Recipe
 # Test the code
 recipe_manager = RecipeManager()
 
-recipe1 = ['name', 'Spaghetti Carbonara', 'ingredients', 'spaghetti', 'bacon', 'eggs']
-recipe2 = ['name', 'Chicken Curry', 'ingredients', 'chicken', 'curry powder', 'coconut milk']
+recipe1 = Recipe(name = 'Spaghetti Carbonara', instructions = 'cook',  ingredients = ['spaghetti', 'bacon', 'eggs'])
+recipe2 = Recipe(name = 'Chicken Curry', instructions = 'cook',  ingredients = ['chicken', 'curry powder', 'coconut milk'])
 
 # Using the setter to add recipes
 recipe_manager.add_recipe = recipe1
