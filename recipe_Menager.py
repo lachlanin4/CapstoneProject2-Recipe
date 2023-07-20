@@ -4,17 +4,14 @@ class RecipeManager:
     def __init__(self):
         self.recipes = []
 
-    @property
     def display_recipes(self):
         for recipe in self.recipes:
             print(recipe)
             return self.recipes
             
-    @display_recipes.getter
     def display_recipes(self):
       return str(self.recipes)
 
-    @display_recipes.setter
     def add_recipe(self, recipe):
         self.recipes.append(recipe)
 
