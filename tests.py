@@ -12,7 +12,7 @@ recipe_manager.add_recipe(recipe1)
 recipe_manager.add_recipe(recipe2)
 
 print("Original recipes:")
-print(recipe_manager.display_recipes)
+print(recipe_manager.stringify_recipes())
 
 recipe3 = {'name': 'Beef Stroganoff', 'ingredients': ['beef', 'mushrooms', 'sour cream']}
 recipe_manager.update_recipe(0, recipe3)
@@ -20,8 +20,11 @@ recipe_manager.update_recipe(0, recipe3)
 print(recipe_manager.display_recipes)
 
 recipe_manager.delete_recipe(0)
+print(recipe_manager.stringify_recipes())
 
 print(recipe_manager.display_recipes)
+
+print(recipe_manager.stringify_recipes())
 
 #recipe_manager.delete_recipe(0)
 
