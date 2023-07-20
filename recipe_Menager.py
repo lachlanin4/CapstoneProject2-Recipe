@@ -15,15 +15,27 @@ class RecipeManager:
             recipes_str += ', ' + recipe.pretty_description()
         return str(recipes_str)
 
-    def add_recipe(self, recipe):
-        self.recipes.append(recipe)
+    def add_recipe(self, recipe_to_add: Recipe):
+        self.recipes.append(recipe_to_add)
 
-    def update_recipe(self, recipe_index, new_recipe):
-        self.recipes[recipe_index] = new_recipe
+    def update_recipe(self, recipe_to_update: Recipe, updated_recipe: Recipe):
+        found = False
+        for x, rec in enumerate(self.recipes):
+            if rec.name == recipe_to_update.name:
+                self.recipes[x] = updated_recipe
+                found = True
+                break
+
+        if not found:
+            print("I couldn't find the recipe")
     
-    def delete_recipe(self, recipe_index):
-        self.recipes.pop(recipe_index)
+    def delete_recipe(self, recipe_to_delete: Recipe):
+        found = False
+        for x, rec in enumerate(self.recipes):
+            if rec.name == recipe_to_delete.name:
+                del self.recipes[x]
+                found = True
+                break
 
-
-
-
+        if not found:
+            print("I couldn't find the recipe")
