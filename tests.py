@@ -19,10 +19,10 @@ recipe3 = Recipe(name = 'Beef Stroganoff', instructions = 'cook',  ingredients =
 print("Replace the 1st recipe with Beef Stroganoff")
 recipe_manager.update_recipe(recipe1, recipe3)
 
-recipe_manager.delete_recipe(0)
 print(recipe_manager.stringify_recipes())
 
-print(recipe_manager.display_recipes)
+print("Delete the Beef Stroganoff recipe")
+recipe_manager.delete_recipe(recipe3)
 
 print(recipe_manager.stringify_recipes())
 
