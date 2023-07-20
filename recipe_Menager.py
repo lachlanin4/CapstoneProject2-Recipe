@@ -1,3 +1,5 @@
+from recipe import Recipe
+
 class RecipeManager:
     def __init__(self):
         self.recipes = []
