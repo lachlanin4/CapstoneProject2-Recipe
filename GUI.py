@@ -47,17 +47,20 @@ def main_listbox():
     scrollbar.pack(side=tk.LEFT,expand=True, fill=tk.Y)
 
 
-# def items_selected(event):
-#     #gets selected item
-#     selected_indices  = listbox.curselection()
-#     selected_recipes=",".join([listbox.get(i) for i in selected_indices])
-#     msg=f"You selected: {selected_recipes}"
+    def items_selected(event):
+        #gets selected item
+        selected_indices  = listbox.curselection()
+        selected_recipes=",".join([listbox.get(i) for i in selected_indices])
+        msg=f"You selected: {selected_recipes}"
+        chosen_item = tk.Label(text=msg)
+        chosen_item.pack()
 
-#     showinfo(title="Information",message=msg)
-# listbox.bind('<<ListboxSelect>>', items_selected)
+    listbox.bind('<<ListboxSelect>>', items_selected)
 
 
 #The below is direcetory selector on uml but need to look into filedialog again
+
+
 display_recipes()
 tkinter.filedialog.askdirectory()
 ent_recipe = tk.Entry(fg="blue",bg = "pink", width=50)
