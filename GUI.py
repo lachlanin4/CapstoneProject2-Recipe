@@ -62,7 +62,7 @@ def main_listbox():
 
 
 display_recipes()
-tkinter.filedialog.askdirectory()
+#tkinter.filedialog.askdirectory() #This pops up the file explorer
 ent_recipe = tk.Entry(fg="blue",bg = "pink", width=50)
 ent_recipe.pack()
 
