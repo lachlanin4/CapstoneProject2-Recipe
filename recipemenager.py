@@ -1,4 +1,4 @@
-class RecipeManager:
+class recipemanager:
     def __init__(self):
         self.recipes = []
 
