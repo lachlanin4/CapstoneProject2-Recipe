@@ -1,9 +1,7 @@
 import tkinter as tk
 #from recipe import Recipe
-
 from recipemanager import RecipeManager
 #from recipemanager import Recipe
-
 
 
 # class Main_Application(tk.Frame):
@@ -27,8 +25,20 @@ listbox = tk.Listbox(
     root,
     height = 10,
     listvariable = list_items,
+    selectmode=tk.SINGLE
 )
-
 #Formatting listbox so it fills screen
-listbox.pack(expand=True, fill=tk.BOTH)
+listbox.pack(expand=True, fill=tk.X)
+
+"""
+##This was meant to let you select the recipe but listbox.curselection() returns a tuple making it difficult
+# def items_selected(event):
+#     #gets selected item
+#     selected_recipe  = listbox.curselection()
+#     tk.Label(text=(f"You have selected{recipe_manager.recipes[selected_recipe[0]]}"))
+#listbox.bind('<<ListboxSelect>>', callback)
+"""
+requested_recipe = tk.Entry(fg="blue",bg = "pink", width=50)
+requested_recipe.pack()
+
 root.mainloop()
