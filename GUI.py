@@ -1,4 +1,10 @@
 import tkinter as tk
+#from recipe import Recipe
+
+from recipemanager import RecipeManager
+#from recipemanager import Recipe
+
+
 
 # class Main_Application(tk.Frame):
 #     def __init__(self,parent,*args,**kwargs):
@@ -9,14 +15,14 @@ import tkinter as tk
 #     root = tk.Tk()
 #     Main_Application(root).pack(side="top", fill="both", expand=True)
 #     root.mainloop()
-recipe_list = ['pie', 'tart', 'lasagne']
-
+recipe_manager = RecipeManager()
+recipe_manager.recipes = ['pie', 'tart', 'lasagne']
 #Create the root
 root = tk.Tk()
 root.title('Listbox')
 
 #Create a Listbox
-list_items=tk.Variable(value=recipe_list)
+list_items=tk.Variable(value= recipe_manager.recipes)
 listbox = tk.Listbox(
     root,
     height = 10,
