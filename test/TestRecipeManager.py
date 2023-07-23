@@ -47,13 +47,13 @@ class TestRecipeManager(RecipeManager):
                 ingredients = input("Enter the updated ingredients: ").split(",")
                 instructions = input("Enter the updated instructions: ").split(",")
                 updated_recipe = Recipe(title_to_update)
-                updated_recipe.set_description(description)
-                updated_recipe.set_no_servings(no_servings)
-                updated_recipe.set_calories_per_portion(calories_per_portion)
+                updated_recipe.description = description
+                updated_recipe.no_servings = no_servings
+                updated_recipe.calories_per_portion = calories_per_portion
                 for ingredient in ingredients:
-                    updated_recipe.set_ingredients(ingredient.strip())
+                    updated_recipe.ingredients = ingredient.strip()
                 for instruction in instructions:
-                    updated_recipe.set_instructions(instruction.strip())
+                    updated_recipe.instructions = instruction.strip()
 
                 self.update_recipe(recipe, updated_recipe)
                 print("Recipe updated successfully.")
