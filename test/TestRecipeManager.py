@@ -42,8 +42,7 @@ class TestRecipeManager(RecipeManager):
         new_recipe.calories_per_portion = calories_per_portion
         for ingredient in ingredients:
             new_recipe.add_ingredients([Ingredient(name=ingredient.strip(), amount=1, units="each", alergens=[], callories=100)])
-        for instruction in instructions:
-            new_recipe.instructions = instruction.strip()
+        new_recipe.instructions = instructions
         
         RecipeManager.add_recipe(self, new_recipe)
         print("Recipe added.")
