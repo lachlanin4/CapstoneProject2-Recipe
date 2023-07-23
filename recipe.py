@@ -12,6 +12,10 @@ class Recipe:
         self._instructions:List[str] = []
 
     @property
+    def title(self):
+        return self._title
+
+    @property
     def description(self):
         return self._description
 
