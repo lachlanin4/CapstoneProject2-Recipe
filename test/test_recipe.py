@@ -56,3 +56,16 @@ apple_pie_recipe.instructions = new_instruction
 
 # Print the new recipe
 pretty_print_recipe(apple_pie_recipe)
+
+# Oh no if people are on a diet this might not be so wise
+
+print(f"\n****I'm on a diet no custard for me I might get tempted!****\n")
+
+# Remove ingredient from list
+apple_pie_recipe.remove_ingredient(Ingredient("Custard", 200, "ml", ["Egg", "Milk"], 600))
+
+# Remove the step from the instructions
+apple_pie_recipe.remove_instruction("STEP 7 - Serve with custard and enjoy!")
+
+# Print the updated recipe
+pretty_print_recipe(apple_pie_recipe)
