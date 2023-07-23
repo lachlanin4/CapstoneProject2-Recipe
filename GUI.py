@@ -1,9 +1,10 @@
 import tkinter as tk
 from tkinter import ttk
 from recipe import Recipe
-# from recipemanager import RecipeManager
+from RecipeManager import RecipeManager
+# from RecipeManager import RecipeManager
 import tkinter.filedialog
-#from recipemanager import Recipe
+# from RecipeManager import Recipe
 
 """
 # class Main_Application(tk.Frame):
@@ -23,10 +24,9 @@ root.title("Recipe Menager")
 listbox:None # I am not defining this variable
 #lbl_recipe_listbox = tk.Label(text="Here are your recipes:")
 # recipe_manager = RecipeManager() I put it in comment
-# recipe_manager.recipes = ['pie', 'tart', 'lasagne']
-recipes = ["carbonara", "tart", "boiled eggs"]
+recipe_manager = RecipeManager()
 
-list_items = tk.StringVar(value=recipes) # saying the tinkter that our list is str variable
+# list_items = tk.StringVar(value=recipes) # saying the tinkter that our list is str variable
 
 # def display_recipes(): #we don't need it here 
 #     main_listbox()
@@ -34,7 +34,7 @@ list_items = tk.StringVar(value=recipes) # saying the tinkter that our list is s
 #Create a Listbox
 def main_listbox():
     global listbox # this variable NEED to be global - information to myslef, because I am thinking that is main variable all the time
-    list_items = tk.Variable(value=recipes) #add recipe menager later
+    list_items = tk.StringVar(value=[recipe._title for recipe in recipe_manager.recipes])
     listbox = tk.Listbox(
         root,
         height = 10,
@@ -64,41 +64,30 @@ def main_listbox():
     listbox.bind('<<ListboxSelect>>', items_selected)
 
 
-#this functions are until recipe meanger will be working properly. I know that I shouldn't test it in main file. I am sorry but I used to it so badly :( 
-#I think that will be good base to do Recipe Menager 
-# Function to add a new recipe
 def add_recipe():
     title = ent_recipe.get()
-    recipes.append(title)
-    list_items.set(recipes)  
+    recipe_manager.add_recipe(title)
     main_listbox()
 
-# Function to remove a recipe
 def remove_recipe():
     global listbox
     selected_indices = listbox.curselection()
     if selected_indices:
         index_to_remove = selected_indices[0]
-        recipes.pop(index_to_remove)
-        list_items.set(recipes)  
+        recipe_manager.remove_recipe(index_to_remove)
         main_listbox()
 
-# Function to edit a recipe
+
 def edit_recipe():
     global listbox
     selected_indices = listbox.curselection()
     if selected_indices:
         index_to_edit = selected_indices[0]
         new_title = ent_recipe.get()
-        recipes[index_to_edit] = new_title
-        list_items.set(recipes)  
+        recipe_manager.edit_recipe(index_to_edit, new_title)
         main_listbox()
 
-def display_recipe():
-    selected_indices = listbox.curselection()
-    if selected_indices:
-        index = selected_indices[0]
-        selected_recipe = recipes[index]
+
 
 
 
@@ -133,6 +122,7 @@ btn_select_to_display_recipe.pack()
 
 # def display_recipe():
 
+# Create an instance of the RecipeManager class
 
 main_listbox() 
 root.mainloop()
