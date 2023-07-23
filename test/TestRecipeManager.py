@@ -11,7 +11,7 @@ class TestRecipeManager(RecipeManager):
     def display_recipes(self):
         for recipe in self.recipes:
             print(recipe._title) #title instead the name 
-            return 
+
         if not self.recipes:
             print("No recipes to display.")
             return
