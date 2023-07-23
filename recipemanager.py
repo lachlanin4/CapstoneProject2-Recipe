@@ -13,11 +13,16 @@ class RecipeManager:
             self.recipes = [recipe_to_add]
 
     def update_recipe(self, recipe_to_update: Recipe, updated_recipe: Recipe):
-        recipe_to_update.set_description(updated_recipe.get_description())
-        recipe_to_update.set_no_servings(updated_recipe.get_no_servings())
-        recipe_to_update.set_calories_per_portion(updated_recipe.get_calories_per_portion())
-        recipe_to_update.set_ingredients(updated_recipe.get_ingredients())
-        recipe_to_update.set_instructions(updated_recipe.get_instructions())
+        found = False
+        for x, rec in enumerate(self.recipes):
+            if rec._title == recipe_to_update._title:
+                self.recipes[x] = updated_recipe
+                found = True
+                break
+
+        if not found:
+            raise ("I couldn't find the recipe to update")
+
     
     def delete_recipe(self, recipe_to_delete: Recipe):
         self.recipes.remove(recipe_to_delete)
