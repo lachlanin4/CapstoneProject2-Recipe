@@ -8,9 +8,21 @@ class TestRecipeManager(RecipeManager):
     def __init__(self):
         super().__init__()
 
+
+    def pretty_print_recipe(self, recipe: Recipe):
+        print(
+            f"Description: {recipe.description} \n No. Servings: {recipe.no_servings} \n Callories per portion: {recipe.calories_per_portion} \n"
+        )
+        print("Ingredients:")
+        for ingredient in recipe.ingredients:
+            print(ingredient.pretty_format())
+        print("\nInstructions:")
+        for instruction in recipe.instructions:
+            print(f"\n{instruction}")
+
     def display_recipes(self):
         for recipe in self.recipes:
-            print(recipe._title) #title instead the name 
+            self.pretty_print_recipe(recipe)
 
         if not self.recipes:
             print("No recipes to display.")
