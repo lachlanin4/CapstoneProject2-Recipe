@@ -89,11 +89,17 @@ class TestRecipeManager(RecipeManager):
         if not found:
             print("Recipe not found. Unable to delete.")
 
+    def write_recipe_from_input(self):
+        for recipe in self.recipes:
+            RecipeManager.write_recipe_to_file(self, recipe, self._path)
+
     def menu(self):
         print("1. Do you want to display recipes?")
         print("2. Do you want to add recipes?")
         print("3. Do you want to update recipe?")
         print("4. Do you want to delete recipe?")
+        print("5. Do you want to write recipes to disc?")
+        print("6. Do you want to read recipes from disc?")
         choice = input("Enter the number of your choice: ")
 
         if choice == "1":
@@ -104,5 +110,9 @@ class TestRecipeManager(RecipeManager):
             self.update_recipe_from_input()
         elif choice == "4":
             self.delete_recipe_from_input()
+        elif choice == "5":
+            self.write_recipe_from_input()
+        elif choice == "6":
+            RecipeManager.read_recipes_from_files(self, self._path)
         else:
             print("Invalid choice.")
