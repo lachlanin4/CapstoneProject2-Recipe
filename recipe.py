@@ -1,3 +1,5 @@
+from ingredient import Ingredient
+
 #Recipe Class
 class Recipe:
 
@@ -7,7 +9,7 @@ class Recipe:
         self._description = None
         self._no_servings = None
         self._calories_per_portion = None
-        self._ingredients = []
+        self._ingredients = list[Ingredient]
         self._instructions = []
 
     def get_description(self):
@@ -29,22 +31,29 @@ class Recipe:
     def set_calories_per_portion(self, calories_per_portion:int):
         self._calories_per_portion = calories_per_portion
     
-    def get_ingredients(self):
+    def get_ingredients(self) -> [Ingredient]:
         return self._ingredients
     
-    def set_ingredients(self,ingredients:list):
+    def set_ingredients(self,ingredients:list[Ingredient]):
         self._ingredients = ingredients
 
-    def add_ingredients(self,ingredients):
-        self._ingredients.append(ingredients)
-        # if len(set(self._ingredients)) != len(self._ingredients):
-        #     self.remove_ingredient(ingredients) #I have tested this and it only removes the recently added ingredient
-        #     return False
+    def add_ingredients(self,ingredients:list[Ingredient]):
+        if len(self._ingredients) > 0:
+           self._ingredients.extend(ingredients)
+        else:
+           self._ingredients = ingredients
     
-    def remove_ingredient(self,ingredient):
-        self._ingredients.remove(ingredient)
-        #[x for x in self._ingredients if x is not None] #tried to use list comprehension to get rid of the none value in self._ingredients did not succeed
-        #Do I need to prevent this removing duplicates if I have already prevented duplication with the set ingredients validation
+    def remove_ingredient(self,ingredient:Ingredient):
+        found = False
+        for x, rec in enumerate(self._ingredients):
+          if rec.name == ingredient.name:
+            del self._ingredients[x]
+            found = True
+            break
+
+        if not found:
+          raise("I couldn't find the recipe")
+
     
     def get_instructions(self):
         return self._instructions
