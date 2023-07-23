@@ -5,9 +5,10 @@ from glob import glob
 from yaml import load, dump, Dumper, Loader
 from pathlib import Path
 
+
 class RecipeManager:
     def __init__(self):
-        self.recipes:List[Recipe] = []
+        self.recipes: List[Recipe] = []
 
     def add_recipe(self, recipe_to_add: Recipe):
         if len(self.recipes) > 0:
@@ -26,11 +27,10 @@ class RecipeManager:
         if not found:
             raise ("I couldn't find the recipe to update")
 
-    
     def delete_recipe(self, recipe_to_delete: Recipe):
         self.recipes.remove(recipe_to_delete)
 
-    def read_recipes_from_files(self, path:Path):
+    def read_recipes_from_files(self, path: Path):
 
         # Create a list to contain returned objects from reading files
         data_sets = []
@@ -44,7 +44,7 @@ class RecipeManager:
         for recipeFile in yaml_files:
 
             # Open the file as read only
-            f = open(recipeFile, 'r')
+            f = open(recipeFile, "r")
 
             # Read the file
             stream = f.read()
@@ -61,7 +61,9 @@ class RecipeManager:
         if len(data_sets) > 0:
             self.recipes = data_sets
 
-    def write_recipe_to_file(self, recipe: Recipe, directory_path:Path, name=None, overwrite=False):
+    def write_recipe_to_file(
+        self, recipe: Recipe, directory_path: Path, name=None, overwrite=False
+    ):
         file_name = "default.py"
         if name == None:
             # Create a file name based on the name of the recipe
@@ -77,10 +79,10 @@ class RecipeManager:
             raise ("File alread exists and you don't want to overwrite")
         else:
             # Open the file for writing
-            f = open(path, 'w')
+            f = open(path, "w")
 
             # Create a dump of the recipe class representation
-            data=dump(recipe, Dumper=Dumper)
+            data = dump(recipe, Dumper=Dumper)
 
             # Write the dumped data to file
             f.write(data)
