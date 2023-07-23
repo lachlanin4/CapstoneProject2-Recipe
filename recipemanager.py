@@ -60,3 +60,30 @@ class RecipeManager:
 
         if len(data_sets) > 0:
             self.recipes = data_sets
+
+    def write_recipe_to_file(self, recipe: Recipe, directory_path:Path, name=None, overwrite=False):
+        file_name = "default.py"
+        if name == None:
+            # Create a file name based on the name of the recipe
+            file_name = str(recipe.title.strip() + ".yml").replace(" ", "_")
+        else:
+            file_name = name
+
+        # Create a path to the file to be written based upon the route path and the filename
+        path = directory_path.joinpath(file_name)
+
+        # If the file already exists - don't bother
+        if path.is_file() and not overwrite:
+            raise ("File alread exists and you don't want to overwrite")
+        else:
+            # Open the file for writing
+            f = open(path, 'w')
+
+            # Create a dump of the recipe class representation
+            data=dump(recipe, Dumper=Dumper)
+
+            # Write the dumped data to file
+            f.write(data)
+
+            # Close the file
+            f.close()
