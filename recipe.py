@@ -10,7 +10,7 @@ class Recipe:
         self._no_servings = None
         self._calories_per_portion = None
         self._ingredients = list[Ingredient]
-        self._instructions = []
+        self._instructions = list[str]
 
     def get_description(self):
         return self._description
@@ -58,8 +58,8 @@ class Recipe:
     def get_instructions(self):
         return self._instructions
 
-    def set_instructions(self, instructions):
-        self._instructions.append(instructions)
+    def set_instructions(self, instructions:list[str]):
+        self._instructions = instructions
         
     def remove_instruction(self, instruction):
         self._instructions.remove(instruction)
