@@ -5,8 +5,9 @@ from recipe import Recipe
 from ingredient import Ingredient
 
 class TestRecipeManager(RecipeManager):
-    def __init__(self):
+    def __init__(self, path):
         super().__init__()
+        self._path = path
 
 
     def pretty_print_recipe(self, recipe: Recipe):
