@@ -7,20 +7,20 @@ from ingredient import Ingredient
 
 def pretty_print_recipe(recipe: Recipe):
     print(
-        f"Description: {recipe.get_description()} \n No. Servings: {recipe.get_no_servings()} \n Callories per portion: {recipe.get_calories_per_portion()} \n"
+        f"Description: {recipe.description} \n No. Servings: {recipe.no_servings} \n Callories per portion: {recipe.calories_per_portion} \n"
     )
     print("Ingredients:")
-    for ingredient in recipe.get_ingredients():
+    for ingredient in recipe.ingredients:
         print(ingredient.pretty_format())
     print("\nInstructions:")
-    for instruction in recipe.get_instructions():
+    for instruction in recipe.instructions:
         print(f"\n{instruction}")
 
 
 apple_pie_recipe = Recipe(title="Apple Pie")
-apple_pie_recipe.set_description("Simple Traditional Apple Pie Recipe")
-apple_pie_recipe.set_no_servings(12)
-apple_pie_recipe.set_calories_per_portion(250)
+apple_pie_recipe.description = "Simple Traditional Apple Pie Recipe"
+apple_pie_recipe.no_servings = 12
+apple_pie_recipe.calories_per_portion = 250
 apple_pie_ingredients = [
     Ingredient("Apple", 12.0, "Each", ["Apples"], 1136),
     Ingredient("Plain Flour", 1000.0, "grammes", ["Wheat", "Cereals", "Gluten"], 2090),
@@ -31,10 +31,9 @@ apple_pie_ingredients = [
     Ingredient("Beaten Egg", 4, "Each", ["Egg"], 360),
 ]
 
-apple_pie_recipe.set_ingredients(apple_pie_ingredients)
+apple_pie_recipe.ingredients = apple_pie_ingredients
 
-apple_pie_recipe.set_instructions(
-    [
+apple_pie_recipe.instructions = [
         "STEP 1 - Heat oven to 200C/180C fan/gas 6. To make the pastry, sift the flour into a large mixing bowl and add the butter or margarine. Using your fingers, mix together until the mixture resembles breadcrumbs.",
         "STEP 2 - Add about 3 tbsp cold water – 1 tbsp at a time – to bind the mixture into a ball. Then wrap it in cling film and leave to chill in the fridge while you prepare the apples, or for 30 mins if you have time.",
         "STEP 3 - While the pastry is chilling, core the apples, then cut into even-sized chunks so they all cook in the same amount of time. Put the apples into the pie dish, drizzle over the honey and add the cinnamon, mixed spice and about 2 tbsp water.",
@@ -42,7 +41,6 @@ apple_pie_recipe.set_instructions(
         "STEP 5 - Make a small cut in the pastry so that the air can escape during cooking, then brush with beaten egg to glaze.",
         "STEP 6 - Bake the pie in the oven for 20-30 mins until the pastry is golden and sandy in appearance and the apple filling is bubbling and hot.",
     ]
-)
 
 # Print out the recipe
 pretty_print_recipe(apple_pie_recipe)

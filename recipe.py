@@ -12,37 +12,46 @@ class Recipe:
         self._ingredients = list[Ingredient]
         self._instructions = list[str]
 
-    def get_description(self):
+    @property
+    def description(self):
         return self._description
-    
-    def set_description(self,description):
+
+    @description.setter
+    def description(self,description):
         self._description = description
 
-    def get_no_servings(self):
+    @property
+    def no_servings(self):
         return self._no_servings
-    
-    def set_no_servings(self, no_servings:int):
+
+    @no_servings.setter
+    def no_servings(self, no_servings:int):
         self._no_servings = no_servings
 
-
-    def get_calories_per_portion(self):
+    @property
+    def calories_per_portion(self):
         return self._calories_per_portion
-    
-    def set_calories_per_portion(self, calories_per_portion:int):
+
+    @calories_per_portion.setter
+    def calories_per_portion(self, calories_per_portion:int):
         self._calories_per_portion = calories_per_portion
-    
-    def get_ingredients(self) -> [Ingredient]:
+
+    @property
+    def ingredients(self) -> [Ingredient]:
         return self._ingredients
-    
-    def set_ingredients(self,ingredients:list[Ingredient]):
+
+    @ingredients.setter
+    def ingredients(self,ingredients:list[Ingredient]):
         self._ingredients = ingredients
 
+    # Method to progressively extend ingredients list
     def add_ingredients(self,ingredients:list[Ingredient]):
         if len(self._ingredients) > 0:
            self._ingredients.extend(ingredients)
         else:
            self._ingredients = ingredients
-    
+
+    # Method to progressively remove ingredients from list
     def remove_ingredient(self,ingredient:Ingredient):
         found = False
         for x, rec in enumerate(self._ingredients):
@@ -54,15 +63,14 @@ class Recipe:
         if not found:
           raise("I couldn't find the recipe")
 
-    
-    def get_instructions(self):
+    @property
+    def instructions(self):
         return self._instructions
 
-    def set_instructions(self, instructions:list[str]):
+    @instructions.setter
+    def instructions(self, instructions:list[str]):
         self._instructions = instructions
-        
+
+    # Method to progressively remove ingredients from list
     def remove_instruction(self, instruction):
         self._instructions.remove(instruction)
-    
-
-
