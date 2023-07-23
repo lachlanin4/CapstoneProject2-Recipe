@@ -1,3 +1,5 @@
+from RecipeManager import RecipeManager
+
 #Recipe Class
 class Recipe:
 
@@ -9,6 +11,7 @@ class Recipe:
         self._calories_per_portion = None
         self._ingredients = []
         self._instructions = []
+        pass
 
     def get_description(self):
         return self._description
