@@ -36,7 +36,7 @@ def main_listbox():
     global listbox # this variable NEED to be global - information to myslef, because I am thinking that is main variable all the time
     list_items = tk.StringVar(value=[recipe._title for recipe in recipe_manager.recipes])
     listbox = tk.Listbox(
-        root,
+        master=main_frame,
         height = 10,
         listvariable = list_items,
         selectmode=tk.SINGLE
@@ -45,7 +45,7 @@ def main_listbox():
     listbox.pack(expand=True,fill=tk.BOTH, side=tk.LEFT)
 
     scrollbar = ttk.Scrollbar(
-        root,
+        master=main_frame,
         orient=tk.VERTICAL,
         command=listbox.yview
     )
@@ -92,33 +92,44 @@ def edit_recipe():
 
 
 #The below is direcetory selector on uml but need to look into filedialog again
+title_frame = tk.Frame(master=root,relief=tk.RIDGE, borderwidth=10)
+title_frame.pack()
+editing_frame = tk.Frame(master=root, relief=tk.RIDGE, borderwidth=5)
+editing_frame.pack()
+main_frame = tk.Frame(master=root,relief=tk.RIDGE, borderwidth=5)
+main_frame.pack()
+recipe_frame= tk.Frame(master=root,relief=tk.RIDGE,borderwidth=5)
+recipe_frame.pack()
 
 
-# display_recipes()
+
+#Recipes is the title that is going to go above everything
+lbl_recipe_listbox = tk.Label(master=title_frame,text="Recipes")
+lbl_recipe_listbox.pack()
+display_recipes()
 #tkinter.filedialog.askdirectory() #This pops up the file explorer
-ent_recipe = tk.Entry(fg="blue",bg = "pink", width=50)
-ent_recipe.pack()
-
-# requested_recipe = ent_recipe.get()
-
-#submit button
-# btn_recipe=tk.Button(text="Submit",command="") #Do we need this button?
-# btn_recipe.pack()
 
 #recipe_display:tkinter.modal dialog box
 #recipe_edit same as above
 
-#All the buttons and packed them
-btn_select_to_remove = tk.Button(text= "Remove Recipe",command=remove_recipe)
+btn_select_to_remove = tk.Button(master=editing_frame,text= "Remove Recipe",command="")
 btn_select_to_remove.pack()
-btn_select_to_search = tk.Button(text="Edit Recipe", command=edit_recipe)
+btn_select_to_search = tk.Button(master=editing_frame,text="Search",command="")
 btn_select_to_search.pack()
-btn_select_to_add = tk.Button(text="Add Recipe",command=add_recipe)
+btn_select_to_add = tk.Button(master=editing_frame,text="Add Recipe",command="")
 btn_select_to_add.pack()
-btn_select_to_display_recipe = tk.Button(text="Display Recipe",command="")
+btn_select_to_display_recipe = tk.Button(master=recipe_frame,text="Display Recipe",command="")
 btn_select_to_display_recipe.pack()
-# btn_select_to_edit_recipe = tk.Button(text="Edit Recipe", command=edit_recipe) #this button is not showing up, why?
-# btn_select_to_display_recipe.pack()
+btn_select_to_edit_recipe = tk.Button(master=recipe_frame,text="Edit Recipe", command="")
+btn_select_to_edit_recipe.pack()
+
+#Ent_recipe is going to go with when user wants to add recipe name, add ingredients, add instructions
+ent_recipe = tk.Entry(master=editing_frame,fg="blue",bg = "pink", width=30)
+ent_recipe.pack()
+requested_recipe = ent_recipe.get()
+
+btn_recipe=tk.Button(master=editing_frame, text="Submit",command="")
+btn_recipe.pack()
 
 # def display_recipe():
 
