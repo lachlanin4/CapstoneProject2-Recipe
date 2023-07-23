@@ -1,7 +1,7 @@
 from ingredient import Ingredient
 from recipe import Recipe
 
-class recipemanager:
+class RecipeManager:
     def __init__(self):
         self.recipes = []
 
