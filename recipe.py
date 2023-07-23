@@ -1,4 +1,5 @@
 from ingredient import Ingredient
+from typing import List
 
 # Recipe Class
 class Recipe:
@@ -7,8 +8,8 @@ class Recipe:
         self._description = None
         self._no_servings = None
         self._calories_per_portion = None
-        self._ingredients = list[Ingredient]
-        self._instructions = list[str]
+        self._ingredients:List[Ingredient] = []
+        self._instructions:List[str] = []
 
     @property
     def description(self):
