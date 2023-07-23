@@ -44,3 +44,15 @@ apple_pie_recipe.instructions = [
 
 # Print out the recipe
 pretty_print_recipe(apple_pie_recipe)
+
+# Add some custard to ingredients list
+apple_pie_recipe.add_ingredients([Ingredient("Custard", 200, "ml", ["Egg", "Milk"], 600)])
+
+# Add instruction to serve with custard
+new_instruction = apple_pie_recipe.instructions + ["STEP 7 - Serve with custard and enjoy!"]
+
+# Set the new list of instructions in the recipe instance
+apple_pie_recipe.instructions = new_instruction
+
+# Print the new recipe
+pretty_print_recipe(apple_pie_recipe)
