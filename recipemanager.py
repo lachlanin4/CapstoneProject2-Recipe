@@ -38,8 +38,6 @@ class RecipeManager:
         # Get a list of yml files that are already in the path
         yaml_files = path.glob("*.yml")
 
-        print(f"{path.absolute}")
-
         # Iterate a list of yaml file previously found in the route path
         for recipeFile in yaml_files:
 
