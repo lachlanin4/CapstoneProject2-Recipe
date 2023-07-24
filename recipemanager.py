@@ -28,7 +28,15 @@ class RecipeManager:
             raise ("I couldn't find the recipe to update")
 
     def delete_recipe(self, recipe_to_delete: Recipe):
-        self.recipes.remove(recipe_to_delete)
+        found = False
+        for x, rec in enumerate(self.recipes):
+            if rec._title == recipe_to_delete._title:
+                del self.recipes[x]
+                found = True
+                break
+
+        if not found:
+            raise ("I couldn't find the recipe to update")
 
     def read_recipes_from_files(self, path: Path):
 
