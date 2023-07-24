@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from recipe import Recipe
-from recipemanager import RecipeManager
+#from recipemanager import RecipeManager
 import tkinter.filedialog
 #from recipemanager import Recipe
 
@@ -17,10 +17,10 @@ import tkinter.filedialog
 #     root.mainloop()
 """
 
-   
+
 root = tk.Tk()
-recipe_manager = RecipeManager()
-recipe_manager.recipes = ['pie', 'tart', 'lasagne']
+# recipe_manager = RecipeManager()
+# recipe_manager.recipes = ['pie', 'tart', 'lasagne']
 
 def display_recipes():
     main_listbox()
@@ -58,20 +58,23 @@ def main_listbox():
 
 
 #The below is direcetory selector on uml but need to look into filedialog again
-title_frame = tk.Frame(master=root,relief=tk.RIDGE, borderwidth=10)
+entire_frame= tk.Frame(master=root,relief=tk.RIDGE,borderwidth=10)
+entire_frame.pack()
+entire_frame.place(relx=0.5,rely=0.5,anchor=tk.CENTER)
+title_frame = tk.Frame(master=entire_frame,relief=tk.RIDGE, borderwidth=10)
 title_frame.pack()
-editing_frame = tk.Frame(master=root, relief=tk.RIDGE, borderwidth=5)
+editing_frame = tk.Frame(master=entire_frame, relief=tk.RIDGE, borderwidth=5)
 editing_frame.pack()
-main_frame = tk.Frame(master=root,relief=tk.RIDGE, borderwidth=5)
+main_frame = tk.Frame(master=entire_frame,relief=tk.RIDGE, borderwidth=5)
 main_frame.pack()
-recipe_frame= tk.Frame(master=root,relief=tk.RIDGE,borderwidth=5)
+recipe_frame= tk.Frame(master=entire_frame,relief=tk.RIDGE,borderwidth=5)
 recipe_frame.pack()
 
 
 
 #Recipes is the title that is going to go above everything
 lbl_recipe_listbox = tk.Label(master=title_frame,text="Recipes")
-lbl_recipe_listbox.pack()
+lbl_recipe_listbox.pack(padx=5,pady=5)
 display_recipes()
 #tkinter.filedialog.askdirectory() #This pops up the file explorer
 
@@ -82,23 +85,23 @@ display_recipes()
 
 #All the buttons and packed them
 btn_select_to_remove = tk.Button(master=editing_frame,text= "Remove Recipe",command="")
-btn_select_to_remove.pack()
+btn_select_to_remove.grid(row=0,column=0)
 btn_select_to_search = tk.Button(master=editing_frame,text="Search",command="")
-btn_select_to_search.pack()
+btn_select_to_search.grid(row=0,column=2)
 btn_select_to_add = tk.Button(master=editing_frame,text="Add Recipe",command="")
-btn_select_to_add.pack()
+btn_select_to_add.grid(row=0,column=1)
 btn_select_to_display_recipe = tk.Button(master=recipe_frame,text="Display Recipe",command="")
-btn_select_to_display_recipe.pack()
+btn_select_to_display_recipe.grid(row=0,column=0)
 btn_select_to_edit_recipe = tk.Button(master=recipe_frame,text="Edit Recipe", command="")
-btn_select_to_edit_recipe.pack()
+btn_select_to_edit_recipe.grid(row=0,column=1)
 
 #Ent_recipe is going to go with when user wants to add recipe name, add ingredients, add instructions
 ent_recipe = tk.Entry(master=editing_frame,fg="blue",bg = "pink", width=30)
-ent_recipe.pack()
+#ent_recipe.pack()
 requested_recipe = ent_recipe.get()
 
 btn_recipe=tk.Button(master=editing_frame, text="Submit",command="")
-btn_recipe.pack()
+#btn_recipe.pack()
 
 # def display_recipe():
 
