@@ -8,19 +8,23 @@ from pathlib import Path
 
 class RecipeManager:
     def __init__(self):
-        self.recipes: List[Recipe] = []
+        self._recipes: List[Recipe] = []
+
+    @property
+    def recipes(self):
+        return self._recipes
 
     def add_recipe(self, recipe_to_add: Recipe):
-        if len(self.recipes) > 0:
-            self.recipes.append(recipe_to_add)
+        if len(self._recipes) > 0:
+            self._recipes.append(recipe_to_add)
         else:
-            self.recipes = [recipe_to_add]
+            self._recipes = [recipe_to_add]
 
     def update_recipe(self, recipe_to_update: Recipe, updated_recipe: Recipe):
         found = False
-        for x, rec in enumerate(self.recipes):
+        for x, rec in enumerate(self._recipes):
             if rec._title == recipe_to_update._title:
-                self.recipes[x] = updated_recipe
+                self._recipes[x] = updated_recipe
                 found = True
                 break
 
@@ -29,9 +33,9 @@ class RecipeManager:
 
     def delete_recipe(self, recipe_to_delete: Recipe):
         found = False
-        for x, rec in enumerate(self.recipes):
+        for x, rec in enumerate(self._recipes):
             if rec._title == recipe_to_delete._title:
-                del self.recipes[x]
+                del self._recipes[x]
                 found = True
                 break
 
@@ -65,7 +69,7 @@ class RecipeManager:
             f.close()
 
         if len(data_sets) > 0:
-            self.recipes = data_sets
+            self._recipes = data_sets
 
     def write_recipe_to_file(
         self, recipe: Recipe, directory_path: Path, name=None, overwrite=False
