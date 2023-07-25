@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
-from recipe import Recipe
-#from recipemanager import RecipeManager
+#from recipe import Recipe
+from recipemanager import RecipeManager
 import tkinter.filedialog
 #from recipemanager import Recipe
 
@@ -19,8 +19,8 @@ import tkinter.filedialog
 
 
 root = tk.Tk()
-# recipe_manager = RecipeManager()
-# recipe_manager.recipes = ['pie', 'tart', 'lasagne']
+recipe_manager = RecipeManager()
+recipe_manager.recipes = ['pie', 'tart', 'lasagne']
 
 def display_recipes():
     main_listbox()
