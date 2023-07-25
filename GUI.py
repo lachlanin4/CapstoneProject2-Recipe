@@ -1,9 +1,10 @@
 import tkinter as tk
 from tkinter import ttk
 from recipe import Recipe
-#from recipemanager import RecipeManager
+from RecipeManager import RecipeManager
+#from RecipeManager import RecipeManager
 import tkinter.filedialog
-#from recipemanager import Recipe
+# from RecipeManager import Recipe
 
 """
 # class Main_Application(tk.Frame):
@@ -19,15 +20,22 @@ import tkinter.filedialog
 
 
 root = tk.Tk()
-# recipe_manager = RecipeManager()
-# recipe_manager.recipes = ['pie', 'tart', 'lasagne']
+root.title("Recipe Menager")
+listbox:None # I am not defining this variable
+#lbl_recipe_listbox = tk.Label(text="Here are your recipes:")
+# recipe_manager = RecipeManager() I put it in comment
+recipe_manager = RecipeManager()
 
-def display_recipes():
-    main_listbox()
+
+# list_items = tk.StringVar(value=recipes) # saying the tinkter that our list is str variable
+
+# def display_recipes(): #we don't need it here 
+#     main_listbox()
 
 #Create a Listbox
 def main_listbox():
-    list_items=tk.Variable(value= recipe_manager.recipes)
+    global listbox # this variable NEED to be global - information to myslef, because I am thinking that is main variable all the time
+    list_items = tk.StringVar(value=[recipe._title for recipe in recipe_manager.recipes])
     listbox = tk.Listbox(
         master=main_frame,
         height = 10,
@@ -57,6 +65,33 @@ def main_listbox():
     listbox.bind('<<ListboxSelect>>', items_selected)
 
 
+def add_recipe():
+    title = ent_recipe.get()
+    recipe_manager.add_recipe(title)
+    main_listbox()
+
+def remove_recipe():
+    global listbox
+    selected_indices = listbox.curselection()
+    if selected_indices:
+        index_to_remove = selected_indices[0]
+        recipe_manager.remove_recipe(index_to_remove)
+        main_listbox()
+
+
+def edit_recipe():
+    global listbox
+    selected_indices = listbox.curselection()
+    if selected_indices:
+        index_to_edit = selected_indices[0]
+        new_title = ent_recipe.get()
+        recipe_manager.edit_recipe(index_to_edit, new_title)
+        main_listbox()
+
+
+
+
+
 #The below is direcetory selector on uml but need to look into filedialog again
 entire_frame= tk.Frame(master=root,relief=tk.RIDGE,borderwidth=10)
 entire_frame.pack()
@@ -73,12 +108,17 @@ recipe_frame.pack()
 
 
 #Recipes is the title that is going to go above everything
-lbl_recipe_listbox = tk.Label(master=title_frame,text="Recipes")
-lbl_recipe_listbox.pack(padx=5,pady=5)
-display_recipes()
+# lbl_recipe_listbox = tk.Label(master=title_frame,text="Recipes") ##
+# lbl_recipe_listbox.pack(padx=5,pady=5) ##
+# display_recipes()
+# display_recipes()
 #tkinter.filedialog.askdirectory() #This pops up the file explorer
 
+# requested_recipe = ent_recipe.get()
 
+#submit button
+# btn_recipe=tk.Button(text="Submit",command="") #Do we need this button?
+# btn_recipe.pack()
 
 #recipe_display:tkinter.modal dialog box
 #recipe_edit same as above
@@ -102,9 +142,20 @@ requested_recipe = ent_recipe.get()
 
 btn_recipe=tk.Button(master=editing_frame, text="Submit",command="")
 #btn_recipe.pack()
+btn_select_to_remove = tk.Button(text= "Remove Recipe",command=remove_recipe)
+btn_select_to_remove.pack()
+btn_select_to_search = tk.Button(text="Edit Recipe", command=edit_recipe)
+btn_select_to_search.pack()
+btn_select_to_add = tk.Button(text="Add Recipe",command=add_recipe)
+btn_select_to_add.pack()
+btn_select_to_display_recipe = tk.Button(text="Display Recipe",command="")
+btn_select_to_display_recipe.pack()
+# btn_select_to_edit_recipe = tk.Button(text="Edit Recipe", command=edit_recipe) #this button is not showing up, why?
+# btn_select_to_display_recipe.pack()
 
 # def display_recipe():
 
+# Create an instance of the RecipeManager class
 
-    
+main_listbox() 
 root.mainloop()
