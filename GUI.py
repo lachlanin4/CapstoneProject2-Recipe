@@ -23,12 +23,11 @@ root.title("Recipe Menager")
 listbox:None # I am not defining this variable
 # recipe_manager = RecipeManager() I put it in comment
 recipe_manager = RecipeManager()
-
-
 # list_items = tk.StringVar(value=recipes) # saying the tinkter that our list is str variable
 
 # def display_recipes(): #we don't need it here 
 #     main_listbox()
+
 
 #Create a Listbox
 def main_listbox():
@@ -90,14 +89,18 @@ def edit_recipe():
         main_listbox()
 
 def display_recipe():
-    recipe_description = tk.Label(master=display_and_add_frame,text=selected_recipes.get_description)
-    recipe_ingredients = tk.Label(master=display_and_add_frame,text=selected_recipes.get_ingredients)
-    recipe_instructions= tk.Label(master=display_and_add_frame,text=selected_recipes.get_instructions)
+    for recipe in recipe_manager.recipes:
+        if recipe._title == selected_recipes:
+            recipe_description = tk.Label(master=display_and_add_frame,text=selected_recipes.get_description())
+            recipe_ingredients = tk.Label(master=display_and_add_frame,text=selected_recipes.get_ingredients())
+            recipe_instructions= tk.Label(master=display_and_add_frame,text=selected_recipes.get_instructions())
 
 
 
 
-#The below is direcetory selector on uml but need to look into filedialog again
+"""
+FRAMES
+"""
 entire_frame= tk.Frame(master=root,relief=tk.RIDGE,borderwidth=10)
 entire_frame.pack()
 entire_frame.place(relx=0.5,rely=0.5,anchor=tk.CENTER)
@@ -126,14 +129,16 @@ lbl_recipe_listbox.pack(padx=5,pady=5)
 #recipe_display:tkinter.modal dialog box
 #recipe_edit same as above
 
-#All the buttons and packed them
+"""
+BUTTONS
+"""
 btn_select_to_remove = tk.Button(master=editing_frame,text= "Remove Recipe",command=remove_recipe)
 btn_select_to_remove.grid(row=0,column=0)
 btn_select_to_search = tk.Button(master=editing_frame,text="Search",command="")
 btn_select_to_search.grid(row=0,column=2)
 btn_select_to_add = tk.Button(master=editing_frame,text="Add Recipe",command=add_recipe)
 btn_select_to_add.grid(row=0,column=1)
-btn_select_to_display_recipe = tk.Button(master=recipe_frame,text="Display Recipe",command="")
+btn_select_to_display_recipe = tk.Button(master=recipe_frame,text="Display Recipe",command=display_recipe)
 btn_select_to_display_recipe.grid(row=0,column=0)
 btn_select_to_edit_recipe = tk.Button(master=recipe_frame,text="Edit Recipe", command=edit_recipe)
 btn_select_to_edit_recipe.grid(row=0,column=1)
