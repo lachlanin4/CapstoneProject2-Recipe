@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from recipe import Recipe
+#from recipe import Recipe
 from RecipeManager import RecipeManager
 #from RecipeManager import RecipeManager
 import tkinter.filedialog
@@ -108,8 +108,8 @@ recipe_frame.pack()
 
 
 #Recipes is the title that is going to go above everything
-# lbl_recipe_listbox = tk.Label(master=title_frame,text="Recipes") ##
-# lbl_recipe_listbox.pack(padx=5,pady=5) ##
+lbl_recipe_listbox = tk.Label(master=title_frame,text="Recipes") ##
+lbl_recipe_listbox.pack(padx=5,pady=5) ##
 # display_recipes()
 # display_recipes()
 #tkinter.filedialog.askdirectory() #This pops up the file explorer
@@ -124,15 +124,15 @@ recipe_frame.pack()
 #recipe_edit same as above
 
 #All the buttons and packed them
-btn_select_to_remove = tk.Button(master=editing_frame,text= "Remove Recipe",command="")
+btn_select_to_remove = tk.Button(master=editing_frame,text= "Remove Recipe",command=remove_recipe)
 btn_select_to_remove.grid(row=0,column=0)
 btn_select_to_search = tk.Button(master=editing_frame,text="Search",command="")
 btn_select_to_search.grid(row=0,column=2)
-btn_select_to_add = tk.Button(master=editing_frame,text="Add Recipe",command="")
+btn_select_to_add = tk.Button(master=editing_frame,text="Add Recipe",command=add_recipe)
 btn_select_to_add.grid(row=0,column=1)
 btn_select_to_display_recipe = tk.Button(master=recipe_frame,text="Display Recipe",command="")
 btn_select_to_display_recipe.grid(row=0,column=0)
-btn_select_to_edit_recipe = tk.Button(master=recipe_frame,text="Edit Recipe", command="")
+btn_select_to_edit_recipe = tk.Button(master=recipe_frame,text="Edit Recipe", command=edit_recipe)
 btn_select_to_edit_recipe.grid(row=0,column=1)
 
 #Ent_recipe is going to go with when user wants to add recipe name, add ingredients, add instructions
@@ -142,14 +142,6 @@ requested_recipe = ent_recipe.get()
 
 btn_recipe=tk.Button(master=editing_frame, text="Submit",command="")
 #btn_recipe.pack()
-btn_select_to_remove = tk.Button(text= "Remove Recipe",command=remove_recipe)
-btn_select_to_remove.pack()
-btn_select_to_search = tk.Button(text="Edit Recipe", command=edit_recipe)
-btn_select_to_search.pack()
-btn_select_to_add = tk.Button(text="Add Recipe",command=add_recipe)
-btn_select_to_add.pack()
-btn_select_to_display_recipe = tk.Button(text="Display Recipe",command="")
-btn_select_to_display_recipe.pack()
 # btn_select_to_edit_recipe = tk.Button(text="Edit Recipe", command=edit_recipe) #this button is not showing up, why?
 # btn_select_to_display_recipe.pack()
 

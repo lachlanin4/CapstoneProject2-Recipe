@@ -1,4 +1,3 @@
-from RecipeManager import RecipeManager
 
 #Recipe Class
 class Recipe:
