@@ -24,6 +24,7 @@ root.title("Recipe Menager")
 listbox:None # I am not defining this variable
 # recipe_manager = RecipeManager() I put it in comment
 recipe_manager = RecipeManager()
+recipe_manager.read_recipes_from_files(Path('./test/testdata'))
 
 # list_items = tk.StringVar(value=recipes) # saying the tinkter that our list is str variable
 
