@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from recipe import Recipe
-from RecipeManager import RecipeManager
+from recipemanager import RecipeManager
 import tkinter.filedialog
 # from RecipeManager import Recipe
 
