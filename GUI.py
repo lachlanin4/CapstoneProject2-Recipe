@@ -60,7 +60,6 @@ def main_listbox():
     listbox["yscrollcommand"] = scrollbar.set
     scrollbar.pack(side=tk.LEFT,expand=True, fill=tk.Y)
 
-
     def items_selected(event):
         #gets selected item
         selected_indices  = listbox.curselection()
@@ -163,5 +162,5 @@ btn_recipe=tk.Button(master=editing_frame, text="Submit",command="")
 
 # Create an instance of the RecipeManager class
 
-main_listbox() 
+main_listbox()
 root.mainloop()
