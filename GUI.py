@@ -74,7 +74,6 @@ def add_recipe():
     main_listbox()
 
 def remove_recipe():
-    global listbox
     selected_indices = listbox.curselection()
     if selected_indices:
         index_to_remove = selected_indices[0]
@@ -83,7 +82,6 @@ def remove_recipe():
 
 
 def edit_recipe():
-    global listbox
     selected_indices = listbox.curselection()
     if selected_indices:
         index_to_edit = selected_indices[0]
