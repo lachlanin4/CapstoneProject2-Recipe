@@ -35,7 +35,7 @@ recipe_manager.read_recipes_from_files(Path('./test/testdata'))
 #Create a Listbox
 def main_listbox():
     global listbox # this variable NEED to be global - information to myslef, because I am thinking that is main variable all the time
-    list_items = tk.StringVar(value=[recipe._title for recipe in recipe_manager.recipes])
+    list_items = tk.StringVar(value=[recipe.title for recipe in recipe_manager.recipes])
     listbox = tk.Listbox(
         master=main_frame,
         height = 10,
@@ -93,10 +93,11 @@ def edit_recipe():
 
 def display_recipe():
     for recipe in recipe_manager.recipes:
-        if recipe._title == selected_recipes:
-            recipe_description = tk.Label(master=display_and_add_frame,text=selected_recipes.get_description())
-            recipe_ingredients = tk.Label(master=display_and_add_frame,text=selected_recipes.get_ingredients())
-            recipe_instructions= tk.Label(master=display_and_add_frame,text=selected_recipes.get_instructions())
+        if recipe.title == selected_recipes:
+            recipe_description = tk.Label(master=display_and_add_frame,text=recipe.description)
+            recipe_ingredients = tk.Label(master=display_and_add_frame,text=recipe.ingredients)
+            recipe_instructions= tk.Label(master=display_and_add_frame,text=recipe.instructions)
+            return
 
 
 
