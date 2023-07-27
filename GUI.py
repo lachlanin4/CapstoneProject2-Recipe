@@ -74,7 +74,8 @@ def main_listbox():
 
 def add_recipe():
     title = ent_recipe.get()
-    recipe_manager.add_recipe(title)
+    new_recipe = Recipe(title)
+    recipe_manager.add_recipe(new_recipe)
     main_listbox()
 
 def remove_recipe():
