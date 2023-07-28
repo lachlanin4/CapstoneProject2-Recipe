@@ -90,18 +90,15 @@ class TestRecipeManager(RecipeManager):
 
     def add_recipe_from_input(self):
         title = input("Enter the title of the dish: ")
+        new_recipe = Recipe(title)
         description = input("Enter the description: ")
         no_servings = int(input("Enter the number of servings: "))
         calories_per_portion = int(input("Enter the calories per portion: "))
-        ingredients = input("Enter the ingredients: ").split(",")
+        self.add_ingredient_menu(new_recipe)
         instructions = input("Enter the instructions: ").split(",")
-
-        new_recipe = Recipe(title)
         new_recipe._description = description  # Set description directly
         new_recipe.no_servings = no_servings
         new_recipe.calories_per_portion = calories_per_portion
-        for ingredient in ingredients:
-            new_recipe.add_ingredients([Ingredient(name=ingredient.strip(), amount=1, units="each", alergens=[], callories=100)])
         new_recipe.instructions = instructions
         
         RecipeManager.add_recipe(self, new_recipe)
