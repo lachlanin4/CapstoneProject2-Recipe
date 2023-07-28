@@ -19,7 +19,7 @@ class TestRecipeManager(RecipeManager):
 
     def pretty_print_recipe(self, recipe: Recipe):
         print(
-            f"Description: {recipe.description} \n No. Servings: {recipe.no_servings} \n Callories per portion: {recipe.calories_per_portion} \n"
+            f" Title: {recipe.title} \n Description: {recipe.description} \n No. Servings: {recipe.no_servings} \n Callories per portion: {recipe.calories_per_portion} \n"
         )
         print("Ingredients:")
         for ingredient in recipe.ingredients:
