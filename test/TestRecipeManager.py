@@ -1,4 +1,5 @@
 import sys
+import os
 sys.path.append("../")
 from recipemanager import RecipeManager
 from recipe import Recipe
@@ -9,6 +10,11 @@ class TestRecipeManager(RecipeManager):
         super().__init__()
         self._path = path
 
+    def clear_screen(self):
+        if os.name == 'nt':
+           os.system('cls')
+        else:
+           os.system('clear')
 
     def pretty_print_recipe(self, recipe: Recipe):
         print(
@@ -102,6 +108,8 @@ class TestRecipeManager(RecipeManager):
                 print(f"Unable to write {recipe.title}")
 
     def menu(self):
+
+        self.clear_screen()
         print("1. Do you want to display recipes?")
         print("2. Do you want to add recipes?")
         print("3. Do you want to update recipe?")
