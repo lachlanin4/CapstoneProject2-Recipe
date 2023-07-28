@@ -81,8 +81,8 @@ class TestRecipeManager(RecipeManager):
             name = input("Please enter the name of the ingredient: ")
             amount = input("Please enter the amount of the ingredient: ")
             units = input("Please enter the units for the amount: ")
-            alergens = input("Please enter the alergens for the ingredient as a comma seperated list").split(",")
-            calories = input("Please enter the amount of calories for the amount of the ingredient")
+            alergens = input("Please enter the alergens for the ingredient as a comma seperated list: ").split(",")
+            calories = input("Please enter the amount of calories for the amount of the ingredient: ")
             ingredients.append(Ingredient(name=name, amount=amount, units=units, alergens=alergens, callories=calories))
 
         new_recipe.add_ingredients(ingredients)
