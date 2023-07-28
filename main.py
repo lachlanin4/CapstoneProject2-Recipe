@@ -176,6 +176,7 @@ class InvitationWindow(tk.Toplevel):
 
     def remove(self):
         print("Remove Recipe button clicked!")
+        delete_recipe_window = RemoveRecipeWindow(self, self.recipe_manager)
 
 
 class DisplayWindow(tk.Toplevel):
@@ -207,6 +208,8 @@ class DisplayWindow(tk.Toplevel):
             recipe_details = f"Recipe {i+1}\nTitle: {recipe_title}\nIngredients: {recipe_ingredients}\nDescription: {recipe_description}\nPreparing Time: {recipe_preparing_time}\nDietary Info: {recipe_dietary_info}\n\n"
 
             self.text_widget.insert(tk.END, recipe_details)
+
+  
 
 
 class AddRecipeWindow(tk.Toplevel):
@@ -269,6 +272,6 @@ class AddRecipeWindow(tk.Toplevel):
 
 if __name__ == "__main__":
     main_window = MainWindow()
-    main_window.title("Main Window")
+    main_window.title("Recipe Menager")
 
     main_window.mainloop()
