@@ -29,7 +29,9 @@ class TestRecipeManager(RecipeManager):
 
     def display_recipes(self):
         for recipe in self.recipes:
+            self.clear_screen()
             self.pretty_print_recipe(recipe)
+            input("Please press return for next")
 
         if not self.recipes:
             print("No recipes to display.")
