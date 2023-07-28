@@ -3,5 +3,9 @@ from pathlib import Path
 
 testrecipemanager = TestRecipeManager(Path("./testdata"))
 
-while True:
-   testrecipemanager.menu()
+run = True
+
+while run:
+   run = testrecipemanager.menu()
+
+print("Thank you for using recipe manager!")
