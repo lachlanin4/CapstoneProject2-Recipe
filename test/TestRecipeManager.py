@@ -60,6 +60,34 @@ class TestRecipeManager(RecipeManager):
         else:
             return
 
+    def add_ingredient_menu(self, new_recipe):
+        number_ingredients = -1
+        ingredients = []
+
+        response = input("How many ingredients does this recipe have?")
+
+        while number_ingredients == -1:
+            try:
+                number_ingredients = int(response)
+            except:
+                print("That is not a number")
+                response = input("How many ingredients does this recipe have?")
+
+        if number_ingredients <= 0:
+            print("No ingredients added returning")
+            return
+
+        for count in range(number_ingredients):
+            name = input("Please enter the name of the ingredient: ")
+            amount = input("Please enter the amount of the ingredient: ")
+            units = input("Please enter the units for the amount: ")
+            alergens = input("Please enter the alergens for the ingredient as a comma seperated list").split(",")
+            calories = input("Please enter the amount of calories for the amount of the ingredient")
+            ingredients.append(Ingredient(name=name, amount=amount, units=units, alergens=alergens, callories=calories))
+
+        new_recipe.add_ingredients(ingredients)
+
+
     def add_recipe_from_input(self):
         title = input("Enter the title of the dish: ")
         description = input("Enter the description: ")
