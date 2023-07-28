@@ -90,7 +90,10 @@ class TestRecipeManager(RecipeManager):
 
     def write_recipe_from_input(self):
         for recipe in self.recipes:
-            RecipeManager.write_recipe_to_file(self, recipe, self._path)
+            try:
+                RecipeManager.write_recipe_to_file(self, recipe, self._path)
+            except:
+                print(f"Unable to write the to {recipe.title}")
 
     def menu(self):
         print("1. Do you want to display recipes?")
