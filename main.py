@@ -28,6 +28,8 @@ class RecipeManager:
             self._recipes.append(recipe_to_add)
         else:
             self._recipes = [recipe_to_add]
+            return True
+
 
     def update_recipe(self, recipe_to_update: Recipe, updated_recipe: Recipe):
         found = False
@@ -171,6 +173,7 @@ class InvitationWindow(tk.Toplevel):
         add_recipe_window = AddRecipeWindow(self, self.recipe_manager)
         add_recipe_window.add_recipe()
 
+
     def edit(self):
         print("Edit Recipe button clicked!")
 
@@ -254,14 +257,24 @@ class AddRecipeWindow(tk.Toplevel):
         self.btn_add_recipe.pack(padx=10, pady=5)
 
     def add_recipe(self):
-        title = self.entry_title.get()
-        ingredients = self.entry_ingredients.get().split(", ")
-        description = self.entry_description.get()
-        preparing_time = self.entry_preparing_time.get()
-        dietary_info = self.entry_kcal_info.get()
+        recipe_title = self.entry_title.get()
+        recipe_ingredients = self.entry_ingredients.get().split(", ")
+        recipe_description = self.entry_description.get()
+        recipe_preparing_time = self.entry_preparing_time.get()
+        recipe_kcal_per_portion_info = self.entry_kcal_info.get()
 
-        recipe = Recipe(title, ingredients, description, preparing_time, dietary_info)
-        self.recipe_manager.add_recipe(recipe)
+        recipe = Recipe(
+            title=recipe_title,
+            ingredients=recipe_ingredients,
+            description=recipe_description,
+            preparing_time=recipe_preparing_time,
+            kcal_per_portion=recipe_kcal_per_portion_info
+        )
+
+        if self.recipe_manager.add_recipe(recipe):
+            print("Recipe added successfully!")
+        else:
+            print("Failed to add the recipe.")
 
         # Update the DisplayWindow with the new recipe
         display_window = self.master.winfo_children()[0]  # Get the DisplayWindow instance
