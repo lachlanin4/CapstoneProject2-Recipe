@@ -138,6 +138,7 @@ class InvitationWindow(tk.Toplevel):
 
         self.recipe_manager = recipe_manager
         self.invitation = invitation
+        self.display_window = None
 
         frame_main = tk.Frame(self)
         frame_main.pack(fill=tk.BOTH, expand=True)
@@ -201,7 +202,7 @@ class DisplayWindow(tk.Toplevel):
             recipe_ingredients = ", ".join(recipe.ingredients)
             recipe_description = recipe.description
             recipe_preparing_time = recipe.preparing_time
-            recipe_dietary_info = recipe.dietary_info
+            recipe_dietary_info = recipe.kcal_per_portion
 
             recipe_details = f"Recipe {i+1}\nTitle: {recipe_title}\nIngredients: {recipe_ingredients}\nDescription: {recipe_description}\nPreparing Time: {recipe_preparing_time}\nDietary Info: {recipe_dietary_info}\n\n"
 
@@ -240,11 +241,11 @@ class AddRecipeWindow(tk.Toplevel):
         self.entry_preparing_time = ttk.Entry(self.frame_main)
         self.entry_preparing_time.pack(padx=10, pady=5)
 
-        self.lbl_dietary_info = ttk.Label(self.frame_main, text="Calorie per portion:")
-        self.lbl_dietary_info.pack(padx=10, pady=5)
+        self.lbl_kcal_info = ttk.Label(self.frame_main, text="Calorie per portion:")
+        self.lbl_kcal_info.pack(padx=10, pady=5)
 
-        self.entry_dietary_info = ttk.Entry(self.frame_main)
-        self.entry_dietary_info.pack(padx=10, pady=5)
+        self.entry_kcal_info = ttk.Entry(self.frame_main)
+        self.entry_kcal_info.pack(padx=10, pady=5)
 
         self.btn_add_recipe = ttk.Button(self.frame_main, text="Add Recipe", command=self.add_recipe)
         self.btn_add_recipe.pack(padx=10, pady=5)
@@ -254,7 +255,7 @@ class AddRecipeWindow(tk.Toplevel):
         ingredients = self.entry_ingredients.get().split(", ")
         description = self.entry_description.get()
         preparing_time = self.entry_preparing_time.get()
-        dietary_info = self.entry_dietary_info.get()
+        dietary_info = self.entry_kcal_info.get()
 
         recipe = Recipe(title, ingredients, description, preparing_time, dietary_info)
         self.recipe_manager.add_recipe(recipe)
