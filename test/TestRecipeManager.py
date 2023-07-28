@@ -99,6 +99,7 @@ class TestRecipeManager(RecipeManager):
         print("4. Do you want to delete recipe?")
         print("5. Do you want to write recipes to disc?")
         print("6. Do you want to read recipes from disc?")
+        print("7. Do you want to exit the recipe manager?")
         choice = input("Enter the number of your choice: ")
 
         if choice == "1":
@@ -113,5 +114,9 @@ class TestRecipeManager(RecipeManager):
             self.write_recipe_from_input()
         elif choice == "6":
             RecipeManager.read_recipes_from_files(self, self._path)
+        elif choice == "7":
+            return False
         else:
             print("Invalid choice.")
+
+        return True
