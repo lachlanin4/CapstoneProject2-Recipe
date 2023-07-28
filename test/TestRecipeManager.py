@@ -1,5 +1,6 @@
 import sys
 import os
+import time
 sys.path.append("../")
 from recipemanager import RecipeManager
 from recipe import Recipe
@@ -35,6 +36,28 @@ class TestRecipeManager(RecipeManager):
 
         if not self.recipes:
             print("No recipes to display.")
+            return
+
+    def display_recipes_summary(self):
+        self.clear_screen()
+        if not self.recipes:
+            print("No recipes to display.")
+            time.sleep(5)
+            return
+        entries = dict()
+        menu_entry = 0
+        for i, recipe in enumerate(self.recipes):
+            menu_entry += 1
+            entries[str(menu_entry)] = recipe
+            print(f"{menu_entry}: {recipe.title}")
+
+        entry = input("Select an entry number to display details of the recipe or anything else to return to the main menu: ")
+
+        if entry in entries:
+            self.clear_screen()
+            self.pretty_print_recipe(entries[entry])
+            input("Press return to return to main menu")
+        else:
             return
 
     def add_recipe_from_input(self):
@@ -119,6 +142,7 @@ class TestRecipeManager(RecipeManager):
         print("5. Do you want to write recipes to disc?")
         print("6. Do you want to read recipes from disc?")
         print("7. Do you want to exit the recipe manager?")
+        print("8. Do you want to display a summary list of recipes?")
         choice = input("Enter the number of your choice: ")
 
         if choice == "1":
@@ -135,6 +159,8 @@ class TestRecipeManager(RecipeManager):
             RecipeManager.read_recipes_from_files(self, self._path)
         elif choice == "7":
             return False
+        elif choice == "8":
+            self.display_recipes_summary()
         else:
             print("Invalid choice.")
 
