@@ -89,11 +89,17 @@ class TestRecipeManager(RecipeManager):
             print("Recipe not found. Unable to delete.")
 
     def write_recipe_from_input(self):
+        overwrite = False
+        choice = input("Do you want to overwrite any pre-exisiting files: ")
+
+        if (choice == "Y") or (choice == "y"):
+            overwrite = True
+
         for recipe in self.recipes:
             try:
-                RecipeManager.write_recipe_to_file(self, recipe, self._path)
+                RecipeManager.write_recipe_to_file(self, recipe, self._path, overwrite=overwrite)
             except:
-                print(f"Unable to write the to {recipe.title}")
+                print(f"Unable to write {recipe.title}")
 
     def menu(self):
         print("1. Do you want to display recipes?")
