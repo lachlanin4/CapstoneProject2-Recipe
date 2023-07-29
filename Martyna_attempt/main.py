@@ -136,6 +136,14 @@ class InvitationWindow(tk.Toplevel): #4
         self.recipe_frame = ttk.Frame(self)
         self.recipe_frame.pack(fill=tk.BOTH, expand=True)
 
+
+        lbl_instuctions = tk.Label(frame_main, text="Instructions\n\n\n\n Menu window: \n 1. Click add recipe- to add recipes. \n 2. Click Display Recipe- to see your recipes. \n 3. Click Edit Recipes- to choose and modify yours recipes. \n 4. Click Remove Recipe- to choose and delete recipe. \n\n\n After every single action like clicking display, add, edit, remove close the actiton window, and continue your actions with recipes in manu window!")
+        lbl_instuctions.pack(padx=50, pady=50)
+
+
+        self.instuctions = ttk.Frame(self)
+        self.instuctions.pack(fill=tk.BOTH, expand=True)
+
         btn_select_to_display_recipe = ttk.Button(master=self.recipe_frame, text="Display Recipe", command=self.display)
         btn_select_to_display_recipe.pack(padx=10, pady=10)
 
