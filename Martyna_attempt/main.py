@@ -130,7 +130,7 @@ class InvitationWindow(tk.Toplevel): #4
         frame_main = tk.Frame(self)
         frame_main.pack(fill=tk.BOTH, expand=True)
 
-        lbl_invitation = tk.Label(frame_main, text=f"{self.invitation}")
+        lbl_invitation = tk.Label(frame_main, text=f"{self.invitation}", font='Helvetica 20 bold')
         lbl_invitation.pack(padx=50, pady=50)
 
         self.recipe_frame = ttk.Frame(self)
