@@ -93,6 +93,32 @@ class TestRecipeManager(RecipeManager):
 
         new_recipe.add_ingredients(ingredients)
 
+    def add_instructions_menu(self, new_recipe):
+        self.clear_screen()
+        number_instructions = -1
+        instructions = []
+        request_text = "How many instructions does this recipe have?: "
+
+        response = input(request_text)
+
+        while number_instructions == -1:
+            try:
+                number_instructions = int(response)
+            except:
+                print("That is not a number")
+                response = input(request_text)
+
+        if number_instructions <= 0:
+            print("No instructions added returning")
+            return
+
+        for count in range(number_instructions):
+            instruction_level = count + 1
+            instruction = input(f"Please enter instruction for number {instruction_level}: ")
+            instructions.append(f"{instruction_level}: {instruction}")
+
+        new_recipe.instructions = instructions
+
 
     def add_recipe_from_input(self):
         self.clear_screen()
@@ -102,11 +128,10 @@ class TestRecipeManager(RecipeManager):
         no_servings = int(input("Enter the number of servings: "))
         calories_per_portion = int(input("Enter the calories per portion: "))
         self.add_ingredient_menu(new_recipe)
-        instructions = input("Enter the instructions: ").split(",")
+        self.add_instructions_menu(new_recipe)
         new_recipe._description = description  # Set description directly
         new_recipe.no_servings = no_servings
         new_recipe.calories_per_portion = calories_per_portion
-        new_recipe.instructions = instructions
         
         RecipeManager.add_recipe(self, new_recipe)
         print("Recipe added.")
