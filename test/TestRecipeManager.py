@@ -29,6 +29,7 @@ class TestRecipeManager(RecipeManager):
             print(f"\n{instruction}")
 
     def display_recipes(self):
+        self.clear_screen()
         for recipe in self.recipes:
             self.clear_screen()
             self.pretty_print_recipe(recipe)
@@ -61,6 +62,7 @@ class TestRecipeManager(RecipeManager):
             return
 
     def add_ingredient_menu(self, new_recipe):
+        self.clear_screen()
         number_ingredients = -1
         ingredients = []
 
@@ -89,6 +91,7 @@ class TestRecipeManager(RecipeManager):
 
 
     def add_recipe_from_input(self):
+        self.clear_screen()
         title = input("Enter the title of the dish: ")
         new_recipe = Recipe(title)
         description = input("Enter the description: ")
