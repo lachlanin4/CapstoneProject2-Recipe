@@ -39,12 +39,12 @@ class TestRecipeManager(RecipeManager):
             print("No recipes to display.")
             return
 
-    def display_recipes_summary(self):
+    def display_recipes_summary(self, display_only:bool = False):
         self.clear_screen()
         if not self.recipes:
             print("No recipes to display.")
             time.sleep(5)
-            return
+            return None
         entries = dict()
         menu_entry = 0
         for i, recipe in enumerate(self.recipes):
@@ -52,14 +52,17 @@ class TestRecipeManager(RecipeManager):
             entries[str(menu_entry)] = recipe
             print(f"{menu_entry}: {recipe.title}")
 
-        entry = input("Select an entry number to display details of the recipe or anything else to return to the main menu: ")
+        entry = input("Select an entry number or anything else to return to the main menu: ")
 
         if entry in entries:
-            self.clear_screen()
-            self.pretty_print_recipe(entries[entry])
-            input("Press return to return to main menu")
+            if display_only:
+                self.clear_screen()
+                self.pretty_print_recipe(entries[entry])
+                input("Press return to return")
+            return entries[entry]
         else:
-            return
+            print("Entry not in list")
+            return None
 
     def add_ingredient_menu(self, new_recipe):
         self.clear_screen()
@@ -188,7 +191,7 @@ class TestRecipeManager(RecipeManager):
         elif choice == "7":
             return False
         elif choice == "8":
-            self.display_recipes_summary()
+            self.display_recipes_summary(display_only = True)
         else:
             print("Invalid choice.")
 
