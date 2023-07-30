@@ -68,15 +68,16 @@ class TestRecipeManager(RecipeManager):
         self.clear_screen()
         number_ingredients = -1
         ingredients = []
+        request_test = "How many ingredients does this recipe have?: "
 
-        response = input("How many ingredients does this recipe have?")
+        response = input(request_test)
 
         while number_ingredients == -1:
             try:
                 number_ingredients = int(response)
             except:
                 print("That is not a number")
-                response = input("How many ingredients does this recipe have?")
+                response = input(request_test)
 
         if number_ingredients <= 0:
             print("No ingredients added returning")
