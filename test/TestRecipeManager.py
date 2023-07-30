@@ -137,30 +137,26 @@ class TestRecipeManager(RecipeManager):
         print("Recipe added.")
 
     def update_recipe_from_input(self):
-        title_to_update = input("Enter the name of the recipe to update: ")
-        found = False
-        for recipe in self.recipes:
-            if recipe._title == title_to_update:
-                description = input("Enter the updated description: ")
-                no_servings = int(input("Enter the updated number of servings: "))
-                calories_per_portion = int(input("Enter the updated calories per portion: "))
-                ingredients = input("Enter the updated ingredients: ").split(",")
-                instructions = input("Enter the updated instructions: ").split(",")
-                updated_recipe = Recipe(title_to_update)
-                updated_recipe.description = description
-                updated_recipe.no_servings = no_servings
-                updated_recipe.calories_per_portion = calories_per_portion
-                for ingredient in ingredients:
-                    updated_recipe.add_ingredients([Ingredient(name=ingredient.strip(), amount=1, units="each", alergens=[], callories=100)])
-                updated_recipe.instructions = instructions
+        updated_recipe = self.display_recipes_summary()
+        if updated_recipe == None:
+            print("No valid selection")
+            return
 
-                self.update_recipe(recipe, updated_recipe)
-                print("Recipe updated successfully.")
-                found = True
-                break
+        description = input("Enter the updated description: ")
+        no_servings = int(input("Enter the updated number of servings: "))
+        calories_per_portion = int(input("Enter the updated calories per portion: "))
+        ingredients = input("Enter the updated ingredients: ").split(",")
+        instructions = input("Enter the updated instructions: ").split(",")
+        updated_recipe = Recipe(title_to_update)
+        updated_recipe.description = description
+        updated_recipe.no_servings = no_servings
+        updated_recipe.calories_per_portion = calories_per_portion
+        for ingredient in ingredients:
+            updated_recipe.add_ingredients([Ingredient(name=ingredient.strip(), amount=1, units="each", alergens=[], callories=100)])
+        updated_recipe.instructions = instructions
 
-        if not found:
-            print("Recipe not found.")
+        self.update_recipe(recipe, updated_recipe)
+
 
     def delete_recipe_from_input(self):
         title_to_delete = input("Enter the name of the recipe to delete: ")
