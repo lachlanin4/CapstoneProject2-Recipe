@@ -84,7 +84,7 @@ class TestRecipeManager(RecipeManager):
             return
 
         for count in range(number_ingredients):
-            name = input("Please enter the name of the ingredient: ")
+            name = input(f"\nPlease enter the name of ingredient {count + 1}: ")
             amount = input("Please enter the amount of the ingredient: ")
             units = input("Please enter the units for the amount: ")
             alergens = input("Please enter the alergens for the ingredient as a comma seperated list: ").split(",")
