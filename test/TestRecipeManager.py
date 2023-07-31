@@ -146,7 +146,7 @@ class TestRecipeManager(RecipeManager):
             print(f"Current {field} is: {current}")
             response = input("Do you want to modify y/n?: ")
             if response in ["y", "Y"]:
-               return input("Enter the updated {field}: ")
+               return input(f"Enter the updated {field}: ")
             else:
                return current
 
