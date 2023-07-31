@@ -43,7 +43,7 @@ class RecipeManager: #2
 """
 
 
-class MainWindow(tk.Tk): #3
+class MainWindow(tk.Tk):  # 3
     def __init__(self):
         super().__init__()
 
@@ -53,19 +53,23 @@ class MainWindow(tk.Tk): #3
         frame_main = ttk.Frame()
         frame_main.pack(fill=tk.BOTH, expand=True)
 
-
-        lbl_invitation = tk.Label(frame_main, text=f"Welcome in Recipe Menager! If you are ready to continue press the button: Run Recipe Menager!")
+        lbl_invitation = tk.Label(
+            frame_main,
+            text=f"Welcome in Recipe Menager! If you are ready to continue press the button: Run Recipe Menager!",
+        )
         lbl_invitation.pack(padx=10, pady=10)
-        btn_show_invitation = ttk.Button(frame_main, text="Run Recipe Manager!", command=self.show_invitation)
+        btn_show_invitation = ttk.Button(
+            frame_main, text="Run Recipe Manager!", command=self.show_invitation
+        )
         btn_show_invitation.pack(padx=10, pady=10)
-        
 
     def show_invitation(self):
-        invitation_window = InvitationWindow(self, invitation=self.invitation, recipe_manager=self.recipe_manager)
-    
+        invitation_window = InvitationWindow(
+            self, invitation=self.invitation, recipe_manager=self.recipe_manager
+        )
 
 
-class InvitationWindow(tk.Toplevel): #4
+class InvitationWindow(tk.Toplevel):  # 4
     def __init__(self, master, invitation, recipe_manager):
         super().__init__(master)
 
@@ -76,31 +80,41 @@ class InvitationWindow(tk.Toplevel): #4
         frame_main = tk.Frame(self)
         frame_main.pack(fill=tk.BOTH, expand=True)
 
-        lbl_invitation = tk.Label(frame_main, text=f"{self.invitation}", font='Helvetica 20 bold')
+        lbl_invitation = tk.Label(
+            frame_main, text=f"{self.invitation}", font="Helvetica 20 bold"
+        )
         lbl_invitation.pack(padx=50, pady=50)
 
         self.recipe_frame = ttk.Frame(self)
         self.recipe_frame.pack(fill=tk.BOTH, expand=True)
 
-
-        lbl_instuctions = tk.Label(frame_main, text="Instructions\n\n\n\n Menu window: \n 1. Click add recipe- to add recipes. \n 2. Click Display Recipe- to see your recipes. \n 3. Click Edit Recipes- to choose and modify yours recipes. \n 4. Click Remove Recipe- to choose and delete recipe. \n\n\n After every single action like clicking display, add, edit, remove close the actiton window, and continue your actions with recipes in manu window!")
+        lbl_instuctions = tk.Label(
+            frame_main,
+            text="Instructions\n\n\n\n Menu window: \n 1. Click add recipe- to add recipes. \n 2. Click Display Recipe- to see your recipes. \n 3. Click Edit Recipes- to choose and modify yours recipes. \n 4. Click Remove Recipe- to choose and delete recipe. \n\n\n After every single action like clicking display, add, edit, remove close the actiton window, and continue your actions with recipes in manu window!",
+        )
         lbl_instuctions.pack(padx=50, pady=50)
-
 
         self.instuctions = ttk.Frame(self)
         self.instuctions.pack(fill=tk.BOTH, expand=True)
 
-        btn_select_to_display_recipe = ttk.Button(master=self.recipe_frame, text="Display Recipe", command=self.display)
+        btn_select_to_display_recipe = ttk.Button(
+            master=self.recipe_frame, text="Display Recipe", command=self.display
+        )
         btn_select_to_display_recipe.pack(padx=10, pady=10)
 
-        
-        btn_select_to_add_recipe = ttk.Button(master=self.recipe_frame, text="Add Recipe", command=self.add)
+        btn_select_to_add_recipe = ttk.Button(
+            master=self.recipe_frame, text="Add Recipe", command=self.add
+        )
         btn_select_to_add_recipe.pack(padx=10, pady=10)
 
-        btn_select_to_edit_recipe = ttk.Button(master=self.recipe_frame, text="Edit Recipe", command=self.edit)
+        btn_select_to_edit_recipe = ttk.Button(
+            master=self.recipe_frame, text="Edit Recipe", command=self.edit
+        )
         btn_select_to_edit_recipe.pack(padx=10, pady=10)
 
-        btn_select_to_remove_recipe = ttk.Button(master=self.recipe_frame, text="Remove Recipe", command=self.remove)
+        btn_select_to_remove_recipe = ttk.Button(
+            master=self.recipe_frame, text="Remove Recipe", command=self.remove
+        )
         btn_select_to_remove_recipe.pack(padx=10, pady=10)
 
     def display(self):
@@ -170,7 +184,9 @@ class AddRecipeWindow(tk.Toplevel):
         self.entry_title = ttk.Entry(self.frame_main)
         self.entry_title.pack(padx=10, pady=5)
 
-        self.lbl_ingredients = ttk.Label(self.frame_main, text="Ingredients (comma-separated):")
+        self.lbl_ingredients = ttk.Label(
+            self.frame_main, text="Ingredients (comma-separated):"
+        )
         self.lbl_ingredients.pack(padx=10, pady=5)
 
         self.entry_ingredients = ttk.Entry(self.frame_main)
@@ -194,7 +210,9 @@ class AddRecipeWindow(tk.Toplevel):
         self.entry_kcal_info = ttk.Entry(self.frame_main)
         self.entry_kcal_info.pack(padx=10, pady=5)
 
-        self.btn_add_recipe = ttk.Button(self.frame_main, text="Add Recipe", command=self.add_recipe)
+        self.btn_add_recipe = ttk.Button(
+            self.frame_main, text="Add Recipe", command=self.add_recipe
+        )
         self.btn_add_recipe.pack(padx=10, pady=5)
 
     def add_recipe(self):
@@ -202,7 +220,11 @@ class AddRecipeWindow(tk.Toplevel):
         ingredients_list = []
         recipe_ingredients = self.entry_ingredients.get().split(", ")
         for ingredient in recipe_ingredients:
-            ingredients_list.append(Ingredient(name=ingredient, amount=1, units="each", alergens=[], callories=0))
+            ingredients_list.append(
+                Ingredient(
+                    name=ingredient, amount=1, units="each", alergens=[], callories=0
+                )
+            )
 
         recipe_description = self.entry_description.get()
         recipe_preparing_time = self.entry_preparing_time.get()
@@ -215,7 +237,7 @@ class AddRecipeWindow(tk.Toplevel):
             description=recipe_description,
             preperation_time=recipe_preparing_time,
             calories_per_portion=recipe_kcal_per_portion_info,
-            instructions=""
+            instructions="",
         )
 
         if self.recipe_manager.add_recipe(recipe):
@@ -232,7 +254,6 @@ class AddRecipeWindow(tk.Toplevel):
         self.destroy()
 
 
-
 class RemoveRecipeWindow(tk.Toplevel):
     def __init__(self, master, recipe_manager):
         super().__init__(master)
@@ -247,7 +268,9 @@ class RemoveRecipeWindow(tk.Toplevel):
         self.recipe_listbox = tk.Listbox(self.frame_main)
         self.recipe_listbox.pack(padx=10, pady=5, fill=tk.BOTH, expand=True)
 
-        self.btn_remove_recipe = ttk.Button(self.frame_main, text="Remove Recipe", command=self.remove_recipe)
+        self.btn_remove_recipe = ttk.Button(
+            self.frame_main, text="Remove Recipe", command=self.remove_recipe
+        )
         self.btn_remove_recipe.pack(padx=10, pady=5)
 
         self.update_recipe_list()
@@ -275,8 +298,6 @@ class RemoveRecipeWindow(tk.Toplevel):
             if self.recipe_manager.delete_recipe(recipe_to_delete):
                 print("Recipe removed successfully!")
 
-
-
                 if self.master.winfo_children():
                     for child in self.master.winfo_children():
                         if isinstance(child, DisplayWindow):
@@ -303,7 +324,9 @@ class EditRecipeWindow(tk.Toplevel):
         self.recipe_listbox = tk.Listbox(self.frame_main)
         self.recipe_listbox.pack(padx=10, pady=5, fill=tk.BOTH, expand=True)
 
-        self.btn_edit_recipe = ttk.Button(self.frame_main, text="Edit Recipe", command=self.edit_recipe)
+        self.btn_edit_recipe = ttk.Button(
+            self.frame_main, text="Edit Recipe", command=self.edit_recipe
+        )
         self.btn_edit_recipe.pack(padx=10, pady=5)
 
         self.update_recipe_list()
@@ -332,6 +355,7 @@ class EditRecipeWindow(tk.Toplevel):
         else:
             print("Recipe not found!")
 
+
 class EditRecipeDetailsWindow(tk.Toplevel):
     def __init__(self, master, recipe):
         super().__init__(master)
@@ -348,7 +372,9 @@ class EditRecipeDetailsWindow(tk.Toplevel):
         self.entry_title.insert(tk.END, recipe.title)
         self.entry_title.pack(padx=10, pady=5)
 
-        self.lbl_ingredients = ttk.Label(self.frame_main, text="Ingredients (comma-separated):")
+        self.lbl_ingredients = ttk.Label(
+            self.frame_main, text="Ingredients (comma-separated):"
+        )
         self.lbl_ingredients.pack(padx=10, pady=5)
 
         self.entry_ingredients = ttk.Entry(self.frame_main)
@@ -377,7 +403,9 @@ class EditRecipeDetailsWindow(tk.Toplevel):
         self.entry_kcal_info.insert(tk.END, recipe.calories_per_portion)
         self.entry_kcal_info.pack(padx=10, pady=5)
 
-        self.btn_save_changes = ttk.Button(self.frame_main, text="Save Changes", command=self.save_changes)
+        self.btn_save_changes = ttk.Button(
+            self.frame_main, text="Save Changes", command=self.save_changes
+        )
         self.btn_save_changes.pack(padx=10, pady=5)
 
     def save_changes(self):
@@ -385,7 +413,11 @@ class EditRecipeDetailsWindow(tk.Toplevel):
         ingredients_list = []
         recipe_ingredients = self.entry_ingredients.get().split(", ")
         for ingredient in recipe_ingredients:
-            ingredients_list.append(Ingredient(name=ingredient, amount=1, units="each", alergens=[], callories=0))
+            ingredients_list.append(
+                Ingredient(
+                    name=ingredient, amount=1, units="each", alergens=[], callories=0
+                )
+            )
 
         recipe_description = self.entry_description.get()
         recipe_preparing_time = self.entry_preparing_time.get()
@@ -398,7 +430,7 @@ class EditRecipeDetailsWindow(tk.Toplevel):
             description=recipe_description,
             preperation_time=recipe_preparing_time,
             calories_per_portion=recipe_kcal_per_portion_info,
-            instructions=""
+            instructions="",
         )
 
         if self.recipe_manager.update_recipe(self.recipe_to_edit, updated_recipe):
