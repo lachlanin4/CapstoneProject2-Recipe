@@ -211,9 +211,11 @@ class AddRecipeWindow(tk.Toplevel):
         recipe = Recipe(
             title=recipe_title,
             ingredients=ingredients_list,
+            no_servings=1,
             description=recipe_description,
             preperation_time=recipe_preparing_time,
             calories_per_portion=recipe_kcal_per_portion_info,
+            instructions=""
         )
 
         if self.recipe_manager.add_recipe(recipe):
@@ -392,9 +394,11 @@ class EditRecipeDetailsWindow(tk.Toplevel):
         updated_recipe = Recipe(
             title=recipe_title,
             ingredients=ingredients_list,
+            no_servings=1,
             description=recipe_description,
             preperation_time=recipe_preparing_time,
             calories_per_portion=recipe_kcal_per_portion_info,
+            instructions=""
         )
 
         if self.recipe_manager.update_recipe(self.recipe_to_edit, updated_recipe):
