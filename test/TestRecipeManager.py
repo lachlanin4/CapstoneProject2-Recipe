@@ -142,20 +142,6 @@ class TestRecipeManager(RecipeManager):
             print("No valid selection")
             return
 
-        description = input("Enter the updated description: ")
-        no_servings = int(input("Enter the updated number of servings: "))
-        calories_per_portion = int(input("Enter the updated calories per portion: "))
-        ingredients = input("Enter the updated ingredients: ").split(",")
-        instructions = input("Enter the updated instructions: ").split(",")
-        updated_recipe = Recipe(title_to_update)
-        updated_recipe.description = description
-        updated_recipe.no_servings = no_servings
-        updated_recipe.calories_per_portion = calories_per_portion
-        for ingredient in ingredients:
-            updated_recipe.add_ingredients([Ingredient(name=ingredient.strip(), amount=1, units="each", alergens=[], callories=100)])
-        updated_recipe.instructions = instructions
-
-        self.update_recipe(recipe, updated_recipe)
 
 
     def delete_recipe_from_input(self):
