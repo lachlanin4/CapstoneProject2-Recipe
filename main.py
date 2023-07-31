@@ -87,6 +87,11 @@ class InvitationWindow(tk.Toplevel):  # 4
         )
         btn_select_to_load_recipes.pack(padx=10, pady=10)
 
+        btn_select_to_save_recipes = ttk.Button(
+            master=self.recipe_frame, text="Save Recipes", command=self.save
+        )
+        btn_select_to_save_recipes.pack(padx=10, pady=10)
+
     def display(self):
         print("Display Recipe button clicked!")
         self.display_window = DisplayWindow(self, self.recipe_manager)
@@ -108,6 +113,12 @@ class InvitationWindow(tk.Toplevel):  # 4
         print("Load Recipes button clicked!")
         folder_selected = filedialog.askdirectory()
         self.recipe_manager.read_recipes_from_files(Path(folder_selected))
+
+    def save(self):
+        print("Save Recipes button clicked!")
+        folder_selected = filedialog.askdirectory()
+        for recipe in self.recipe_manager.recipes:
+            self.recipe_manager.write_recipe_to_file(recipe=recipe, directory_path=Path(folder_selected), overwrite=True)
 
 
 class DisplayWindow(tk.Toplevel):
