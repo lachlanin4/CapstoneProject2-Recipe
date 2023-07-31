@@ -142,6 +142,13 @@ class TestRecipeManager(RecipeManager):
             print("No valid selection")
             return
 
+        def check_for_update(field:str, current):
+            print(f"Current {field} is: {current}")
+            response = input("Do you want to modify y/n?: ")
+            if response in ["y", "Y"]:
+               return input("Enter the updated {field}: ")
+            else:
+               return current
 
 
     def delete_recipe_from_input(self):
