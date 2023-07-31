@@ -374,7 +374,7 @@ class EditRecipeDetailsWindow(tk.Toplevel):
         self.lbl_kcal_info.pack(padx=10, pady=5)
 
         self.entry_kcal_info = ttk.Entry(self.frame_main)
-        self.entry_kcal_info.insert(tk.END, recipe.kcal_per_portion)
+        self.entry_kcal_info.insert(tk.END, recipe.calories_per_portion)
         self.entry_kcal_info.pack(padx=10, pady=5)
 
         self.btn_save_changes = ttk.Button(self.frame_main, text="Save Changes", command=self.save_changes)
