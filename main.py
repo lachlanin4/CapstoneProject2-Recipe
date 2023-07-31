@@ -365,7 +365,7 @@ class EditRecipeDetailsWindow(tk.Toplevel):
         self.lbl_preparing_time.pack(padx=10, pady=5)
 
         self.entry_preparing_time = ttk.Entry(self.frame_main)
-        self.entry_preparing_time.insert(tk.END, recipe.preparing_time)
+        self.entry_preparing_time.insert(tk.END, recipe.preperation_time)
         self.entry_preparing_time.pack(padx=10, pady=5)
 
         self.lbl_kcal_info = ttk.Label(self.frame_main, text="Calorie per portion:")
