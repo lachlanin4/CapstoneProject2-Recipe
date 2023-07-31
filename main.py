@@ -138,7 +138,7 @@ class DisplayWindow(tk.Toplevel):
     def update_text_widget(self):
         self.text_widget.delete(1.0, tk.END)
 
-        recipes = self.recipe_manager.recipes()
+        recipes = self.recipe_manager.recipes
 
         for i, recipe in enumerate(recipes, 1):
             recipe_details = (
@@ -245,7 +245,7 @@ class RemoveRecipeWindow(tk.Toplevel):
 
     def update_recipe_list(self):
         self.recipe_listbox.delete(0, tk.END)
-        recipes = self.recipe_manager.recipes()
+        recipes = self.recipe_manager.recipes
         for recipe in recipes:
             self.recipe_listbox.insert(tk.END, recipe.title)
 
@@ -257,7 +257,7 @@ class RemoveRecipeWindow(tk.Toplevel):
         recipe_title = self.recipe_listbox.get(selected_index[0])
         recipe_to_delete = None
 
-        for recipe in self.recipe_manager.recipes():
+        for recipe in self.recipe_manager.recipes:
             if recipe.title == recipe_title:
                 recipe_to_delete = recipe
                 break
@@ -301,7 +301,7 @@ class EditRecipeWindow(tk.Toplevel):
 
     def update_recipe_list(self):
         self.recipe_listbox.delete(0, tk.END)
-        recipes = self.recipe_manager.recipes()
+        recipes = self.recipe_manager.recipes
         for recipe in recipes:
             self.recipe_listbox.insert(tk.END, recipe.title)
 
@@ -313,7 +313,7 @@ class EditRecipeWindow(tk.Toplevel):
         recipe_title = self.recipe_listbox.get(selected_index[0])
         recipe_to_edit = None
 
-        for recipe in self.recipe_manager.recipes():
+        for recipe in self.recipe_manager.recipes:
             if recipe.title == recipe_title:
                 recipe_to_edit = recipe
                 break
