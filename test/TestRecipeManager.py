@@ -172,6 +172,27 @@ class TestRecipeManager(RecipeManager):
                 updated_ingredients.append(ingredient)
 
         updated_recipe.ingredients = updated_ingredients;
+
+        updated_instructions = []
+        instruction_count = 0
+        print(len(updated_recipe.instructions))
+        for i, instruction in enumerate(updated_recipe.instructions):
+            split_instruction = ':'.join(instruction.split(':')[1:])
+            response = input(f"Instruction is {split_instruction}, do you want to change or remove y/n?: ")
+            if response in ["y","Y"]:
+                updated_instruction = input(f"Please enter the updated instruction or return to remove: ")
+                if updated_instruction != "":
+                    instruction_count += 1
+                    updated_instructions.append(f"{instruction_count}: {updated_instruction}")
+                else:
+                    print(f"Removing instruction {instruction}")
+            else:
+                instruction_count += 1
+                updated_instructions.append(f"{instruction_count}: {split_instruction}")
+
+        updated_recipe.instructions = updated_instructions;
+
+
     def delete_recipe_from_input(self):
         title_to_delete = input("Enter the name of the recipe to delete: ")
         found = False
