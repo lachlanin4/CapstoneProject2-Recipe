@@ -177,7 +177,11 @@ class TestRecipeManager(RecipeManager):
         instruction_count = 0
         print(len(updated_recipe.instructions))
         for i, instruction in enumerate(updated_recipe.instructions):
-            split_instruction = ':'.join(instruction.split(':')[1:])
+            instruction_split = instruction.split(':')
+            if len(instruction_split) > 1:
+                split_instruction = ':'.join(instruction_split[1:])
+            else:
+                split_instruction = instruction_split[0]
             response = input(f"Instruction is {split_instruction}, do you want to change or remove y/n?: ")
             if response in ["y","Y"]:
                 updated_instruction = input(f"Please enter the updated instruction or return to remove: ")
