@@ -141,10 +141,13 @@ class DisplayWindow(tk.Toplevel):
         recipes = self.recipe_manager.recipes
 
         for i, recipe in enumerate(recipes, 1):
+
+            ingredients_string = ", ".join(str(e.name) for e in recipe.ingredients)
+
             recipe_details = (
                 f"Recipe {i}\n"
                 f"Title: {recipe.title}\n"
-                f"Ingredients: {', '.join(recipe.ingredients)}\n"
+                f"Ingredients: {ingredients_string}\n"
                 f"Description: {recipe.description}\n"
                 f"Preparing Time: {recipe.preperation_time}\n"
                 f"Dietary Info: {recipe.calories_per_portion}\n\n"
@@ -196,14 +199,18 @@ class AddRecipeWindow(tk.Toplevel):
 
     def add_recipe(self):
         recipe_title = self.entry_title.get()
+        ingredients_list = []
         recipe_ingredients = self.entry_ingredients.get().split(", ")
+        for ingredient in recipe_ingredients:
+            ingredients_list.append(Ingredient(name=ingredient, amount=1, units="each", alergens=[], callories=0))
+
         recipe_description = self.entry_description.get()
         recipe_preparing_time = self.entry_preparing_time.get()
         recipe_kcal_per_portion_info = self.entry_kcal_info.get()
 
         recipe = Recipe(
             title=recipe_title,
-            ingredients=recipe_ingredients,
+            ingredients=ingredients_list,
             description=recipe_description,
             preperation_time=recipe_preparing_time,
             calories_per_portion=recipe_kcal_per_portion_info,
@@ -343,7 +350,8 @@ class EditRecipeDetailsWindow(tk.Toplevel):
         self.lbl_ingredients.pack(padx=10, pady=5)
 
         self.entry_ingredients = ttk.Entry(self.frame_main)
-        self.entry_ingredients.insert(tk.END, ", ".join(recipe.ingredients))
+        ingredients_string = ", ".join(str(e.name) for e in recipe.ingredients)
+        self.entry_ingredients.insert(tk.END, ingredients_string)
         self.entry_ingredients.pack(padx=10, pady=5)
 
         self.lbl_description = ttk.Label(self.frame_main, text="Description:")
@@ -372,14 +380,18 @@ class EditRecipeDetailsWindow(tk.Toplevel):
 
     def save_changes(self):
         recipe_title = self.entry_title.get()
+        ingredients_list = []
         recipe_ingredients = self.entry_ingredients.get().split(", ")
+        for ingredient in recipe_ingredients:
+            ingredients_list.append(Ingredient(name=ingredient, amount=1, units="each", alergens=[], callories=0))
+
         recipe_description = self.entry_description.get()
         recipe_preparing_time = self.entry_preparing_time.get()
         recipe_kcal_per_portion_info = self.entry_kcal_info.get()
 
         updated_recipe = Recipe(
             title=recipe_title,
-            ingredients=recipe_ingredients,
+            ingredients=ingredients_list,
             description=recipe_description,
             preperation_time=recipe_preparing_time,
             calories_per_portion=recipe_kcal_per_portion_info,
