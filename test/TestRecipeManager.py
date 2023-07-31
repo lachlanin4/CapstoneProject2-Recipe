@@ -150,6 +150,9 @@ class TestRecipeManager(RecipeManager):
             else:
                return current
 
+        updated_recipe.description = check_for_update(field = "Description", current = updated_recipe.description)
+        updated_recipe.no_servings = int(check_for_update(field = "No Servings", current = updated_recipe.no_servings))
+        updated_recipe.calories_per_portion = int(check_for_update(field = "No Calories Per Portion", current = updated_recipe.calories_per_portion))
 
     def delete_recipe_from_input(self):
         title_to_delete = input("Enter the name of the recipe to delete: ")
