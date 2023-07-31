@@ -3,6 +3,7 @@ import tkinter.ttk as ttk
 from pathlib import Path
 from yaml import load, dump, Dumper, Loader
 
+
 class Recipe: #1
     def __init__(self, title, ingredients, description, preparing_time, kcal_per_portion):
         self.title = title
@@ -37,64 +38,6 @@ class RecipeManager: #2
             return True
         return False
 
-
-    # def read_recipes_from_files(self, path: Path):
-
-    #     # Create a list to contain returned objects from reading files
-    #     data_sets = []
-
-    #     # Get a list of yml files that are already in the path
-    #     yaml_files = path.glob("*.yml")
-
-    #     # Iterate a list of yaml file previously found in the route path
-    #     for recipeFile in yaml_files:
-
-    #         # Open the file as read only
-    #         f = open(recipeFile, "r")
-
-    #         # Read the file
-    #         stream = f.read()
-
-    #         # Load the data
-    #         data = load(stream, Loader=Loader)
-
-    #         # Append the data
-    #         data_sets.append(data)
-
-    #         # Close the file
-    #         f.close()
-
-    #     if len(data_sets) > 0:
-    #         self._recipes = data_sets
-
-    # def write_recipe_to_file(
-    #     self, recipe: Recipe, directory_path: Path, name=None, overwrite=False
-    # ):
-    #     file_name = "default.py"
-    #     if name == None:
-    #         # Create a file name based on the name of the recipe
-    #         file_name = str(recipe.title.strip() + ".yml").replace(" ", "_")
-    #     else:
-    #         file_name = name
-
-    #     # Create a path to the file to be written based upon the route path and the filename
-    #     path = directory_path.joinpath(file_name)
-
-    #     # If the file already exists - don't bother
-    #     if path.is_file() and not overwrite:
-    #         raise ("File alread exists and you don't want to overwrite")
-    #     else:
-    #         # Open the file for writing
-    #         f = open(path, "w")
-
-    #         # Create a dump of the recipe class representation
-    #         data = dump(recipe, Dumper=Dumper)
-
-    #         # Write the dumped data to file
-    #         f.write(data)
-
-    #         # Close the file
-    #         f.close()
 
 
 class MainWindow(tk.Tk): #3
