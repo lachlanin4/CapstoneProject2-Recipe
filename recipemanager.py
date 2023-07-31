@@ -19,6 +19,7 @@ class RecipeManager:
             self._recipes.append(recipe_to_add)
         else:
             self._recipes = [recipe_to_add]
+        return True
 
     def update_recipe(self, recipe_to_update: Recipe, updated_recipe: Recipe):
         found = False
@@ -30,8 +31,10 @@ class RecipeManager:
 
         if not found:
             raise ("I couldn't find the recipe to update")
+        else:
+            return found
 
-    def delete_recipe(self, recipe_to_delete: Recipe):
+    def delete_recipe(self, recipe_to_delete: Recipe) -> bool:
         found = False
         for x, rec in enumerate(self._recipes):
             if rec._title == recipe_to_delete._title:
@@ -41,6 +44,8 @@ class RecipeManager:
 
         if not found:
             raise ("I couldn't find the recipe to update")
+        else:
+            return found
 
     def read_recipes_from_files(self, path: Path):
 
