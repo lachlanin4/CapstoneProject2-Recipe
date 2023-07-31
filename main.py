@@ -111,12 +111,12 @@ class InvitationWindow(tk.Toplevel):  # 4
 
     def load(self):
         print("Load Recipes button clicked!")
-        folder_selected = filedialog.askdirectory()
+        folder_selected = filedialog.askdirectory(parent=self)
         self.recipe_manager.read_recipes_from_files(Path(folder_selected))
 
     def save(self):
         print("Save Recipes button clicked!")
-        folder_selected = filedialog.askdirectory()
+        folder_selected = filedialog.askdirectory(parent=self)
         for recipe in self.recipe_manager.recipes:
             self.recipe_manager.write_recipe_to_file(recipe=recipe, directory_path=Path(folder_selected), overwrite=True)
 
