@@ -34,6 +34,14 @@ class Recipe:
         self._description = description
 
     @property
+    def preperation_time(self):
+        return self._preperation_time
+
+    @preperation_time.setter
+    def preperation_time(self, preperation_time):
+        self._preperation_time = preperation_time
+
+    @property
     def no_servings(self):
         return self._no_servings
 
