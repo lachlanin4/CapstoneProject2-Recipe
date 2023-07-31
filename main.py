@@ -5,6 +5,7 @@ from yaml import load, dump, Dumper, Loader
 from recipemanager import RecipeManager
 from recipe import Recipe
 from ingredient import Ingredient
+from tkinter import filedialog
 
 
 class MainWindow(tk.Tk):  # 3
@@ -81,6 +82,11 @@ class InvitationWindow(tk.Toplevel):  # 4
         )
         btn_select_to_remove_recipe.pack(padx=10, pady=10)
 
+        btn_select_to_load_recipes = ttk.Button(
+            master=self.recipe_frame, text="Load Recipes", command=self.load
+        )
+        btn_select_to_load_recipes.pack(padx=10, pady=10)
+
     def display(self):
         print("Display Recipe button clicked!")
         self.display_window = DisplayWindow(self, self.recipe_manager)
@@ -97,6 +103,11 @@ class InvitationWindow(tk.Toplevel):  # 4
     def remove(self):
         print("Remove Recipe button clicked!")
         remove_recipe_window = RemoveRecipeWindow(self, self.recipe_manager)
+
+    def load(self):
+        print("Load Recipes button clicked!")
+        folder_selected = filedialog.askdirectory()
+        self.recipe_manager.read_recipes_from_files(Path(folder_selected))
 
 
 class DisplayWindow(tk.Toplevel):
