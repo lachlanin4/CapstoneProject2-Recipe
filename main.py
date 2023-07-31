@@ -204,7 +204,7 @@ class AddRecipeWindow(tk.Toplevel):
     def add_recipe(self):
         recipe_title = self.entry_title.get()
         ingredients_list = []
-        recipe_ingredients = self.entry_ingredients.get().split(", ")
+        recipe_ingredients = self.entry_ingredients.get().split(",")
         for ingredient in recipe_ingredients:
             ingredients_list.append(
                 Ingredient(
