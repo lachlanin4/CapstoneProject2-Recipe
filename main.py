@@ -146,8 +146,8 @@ class DisplayWindow(tk.Toplevel):
                 f"Title: {recipe.title}\n"
                 f"Ingredients: {', '.join(recipe.ingredients)}\n"
                 f"Description: {recipe.description}\n"
-                f"Preparing Time: {recipe.preparing_time}\n"
-                f"Dietary Info: {recipe.kcal_per_portion}\n\n"
+                f"Preparing Time: {recipe.preperation_time}\n"
+                f"Dietary Info: {recipe.calories_per_portion}\n\n"
             )
 
             self.text_widget.insert(tk.END, recipe_details)
@@ -205,8 +205,8 @@ class AddRecipeWindow(tk.Toplevel):
             title=recipe_title,
             ingredients=recipe_ingredients,
             description=recipe_description,
-            preparing_time=recipe_preparing_time,
-            kcal_per_portion=recipe_kcal_per_portion_info
+            preperation_time=recipe_preparing_time,
+            calories_per_portion=recipe_kcal_per_portion_info,
         )
 
         if self.recipe_manager.add_recipe(recipe):
@@ -381,8 +381,8 @@ class EditRecipeDetailsWindow(tk.Toplevel):
             title=recipe_title,
             ingredients=recipe_ingredients,
             description=recipe_description,
-            preparing_time=recipe_preparing_time,
-            kcal_per_portion=recipe_kcal_per_portion_info
+            preperation_time=recipe_preparing_time,
+            calories_per_portion=recipe_kcal_per_portion_info,
         )
 
         if self.recipe_manager.update_recipe(self.recipe_to_edit, updated_recipe):
