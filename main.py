@@ -2,8 +2,11 @@ import tkinter as tk
 import tkinter.ttk as ttk
 from pathlib import Path
 from yaml import load, dump, Dumper, Loader
+from recipemanager import RecipeManager
+from recipe import Recipe
+from ingredient import Ingredient
 
-
+"""
 class Recipe: #1
     def __init__(self, title, ingredients, description, preparing_time, kcal_per_portion):
         self.title = title
@@ -37,7 +40,7 @@ class RecipeManager: #2
             self._recipes.remove(recipe_to_delete)
             return True
         return False
-
+"""
 
 
 class MainWindow(tk.Tk): #3
