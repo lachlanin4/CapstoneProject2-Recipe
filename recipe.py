@@ -3,13 +3,23 @@ from typing import List
 
 # Recipe Class
 class Recipe:
-    def __init__(self, title):
+    def __init__(
+        self,
+        title,
+        description=None,
+        no_servings=None,
+        calories_per_portion=None,
+        ingredients=[Ingredient],
+        instructions=[str],
+        preperation_time=None,
+    ):
         self._title = title
-        self._description = None
-        self._no_servings = None
-        self._calories_per_portion = None
-        self._ingredients:List[Ingredient] = []
-        self._instructions:List[str] = []
+        self._description = description
+        self._no_servings = no_servings
+        self._calories_per_portion = calories_per_portion
+        self._ingredients: List[Ingredient] = ingredients
+        self._instructions: List[str] = instructions
+        self._preperation_time = preperation_time
 
     @property
     def title(self):
