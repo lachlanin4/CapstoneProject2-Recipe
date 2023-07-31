@@ -6,42 +6,6 @@ from recipemanager import RecipeManager
 from recipe import Recipe
 from ingredient import Ingredient
 
-"""
-class Recipe: #1
-    def __init__(self, title, ingredients, description, preparing_time, kcal_per_portion):
-        self.title = title
-        self.ingredients = ingredients
-        self.description = description
-        self.preparing_time = preparing_time
-        self.kcal_per_portion = kcal_per_portion
-
-class RecipeManager: #2
-    def __init__(self):
-        self._recipes = []
-
-    def recipes(self):
-        return self._recipes
-
-    def add_recipe(self, recipe_to_add):
-        if recipe_to_add not in self._recipes:
-            self._recipes.append(recipe_to_add)
-            return True
-        return False
-
-    def update_recipe(self, recipe_to_update, updated_recipe):
-        if recipe_to_update in self._recipes:
-            index = self._recipes.index(recipe_to_update)
-            self._recipes[index] = updated_recipe
-            return True
-        return False
-
-    def delete_recipe(self, recipe_to_delete):
-        if recipe_to_delete in self._recipes:
-            self._recipes.remove(recipe_to_delete)
-            return True
-        return False
-"""
-
 
 class MainWindow(tk.Tk):  # 3
     def __init__(self):
