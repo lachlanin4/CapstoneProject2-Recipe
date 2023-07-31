@@ -154,6 +154,24 @@ class TestRecipeManager(RecipeManager):
         updated_recipe.no_servings = int(check_for_update(field = "No Servings", current = updated_recipe.no_servings))
         updated_recipe.calories_per_portion = int(check_for_update(field = "No Calories Per Portion", current = updated_recipe.calories_per_portion))
 
+        updated_ingredients = []
+
+        for i, ingredient in enumerate(updated_recipe.ingredients):
+            response = input(f"Ingredient is {ingredient.name}, do you want to change or remove y/n?: ")
+            if response in ["y","Y"]:
+                name = input(f"\nPlease enter the name of ingredient or return to remove: {ingredient.name}: ")
+                if name != "":
+                    amount = input("Please enter the amount of the ingredient: ")
+                    units = input("Please enter the units for the amount: ")
+                    alergens = input("Please enter the alergens for the ingredient as a comma seperated list: ").split(",")
+                    calories = input("Please enter the amount of calories for the amount of the ingredient: ")
+                    updated_ingredients.append(Ingredient(name=name, amount=amount, units=units, alergens=alergens, callories=calories))
+                else:
+                    print(f"Removing ingredient {ingredient.name}")
+            else:
+                updated_ingredients.append(ingredient)
+
+        updated_recipe.ingredients = updated_ingredients;
     def delete_recipe_from_input(self):
         title_to_delete = input("Enter the name of the recipe to delete: ")
         found = False
