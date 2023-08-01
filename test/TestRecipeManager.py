@@ -19,7 +19,7 @@ class TestRecipeManager(RecipeManager):
 
     def pretty_print_recipe(self, recipe: Recipe):
         print(
-            f" Title: {recipe.title} \n Description: {recipe.description} \n No. Servings: {recipe.no_servings} \n Callories per portion: {recipe.calories_per_portion} \n"
+            f" Title: {recipe.title} \n Description: {recipe.description} \n No. Servings: {recipe.no_servings} \n Callories per portion: {recipe.calories_per_portion} \n Preperation Time: {recipe.preperation_time} \n"
         )
         print("Ingredients:")
         for ingredient in recipe.ingredients:
@@ -132,6 +132,7 @@ class TestRecipeManager(RecipeManager):
         new_recipe._description = description  # Set description directly
         new_recipe.no_servings = no_servings
         new_recipe.calories_per_portion = calories_per_portion
+        new_recipe.preperation_time = int(input("Enter the prep time in mins: "))
         
         RecipeManager.add_recipe(self, new_recipe)
         print("Recipe added.")
@@ -153,6 +154,7 @@ class TestRecipeManager(RecipeManager):
         updated_recipe.description = check_for_update(field = "Description", current = updated_recipe.description)
         updated_recipe.no_servings = int(check_for_update(field = "No Servings", current = updated_recipe.no_servings))
         updated_recipe.calories_per_portion = int(check_for_update(field = "No Calories Per Portion", current = updated_recipe.calories_per_portion))
+        updated_recipe.preperation_time = int(check_for_update(field = "Enter the prep time in mins", current = updated_recipe.preperation_time))
 
         updated_ingredients = []
 
