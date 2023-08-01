@@ -5,7 +5,7 @@ from recipemanager import RecipeManager
 from recipe import Recipe
 from ingredient import Ingredient
 from pathlib import Path
-from TestRecipeManager import TestRecipeManager
+from testrecipemanager import TestRecipeManager
 
 path = Path("./testdata")
 

@@ -1,4 +1,4 @@
-from TestRecipeManager import TestRecipeManager
+from testrecipemanager import TestRecipeManager
 from pathlib import Path
 
 testrecipemanager = TestRecipeManager(Path("./testdata"))
