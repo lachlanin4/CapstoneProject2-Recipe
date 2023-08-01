@@ -1,10 +1,12 @@
 import sys
 import os
 import time
+
 sys.path.append("../")
 from recipemanager import RecipeManager
 from recipe import Recipe
 from ingredient import Ingredient
+
 
 class TestRecipeManager(RecipeManager):
     def __init__(self, path):
@@ -12,10 +14,10 @@ class TestRecipeManager(RecipeManager):
         self._path = path
 
     def clear_screen(self):
-        if os.name == 'nt':
-           os.system('cls')
+        if os.name == "nt":
+            os.system("cls")
         else:
-           os.system('clear')
+            os.system("clear")
 
     def pretty_print_recipe(self, recipe: Recipe):
         print(
@@ -39,7 +41,7 @@ class TestRecipeManager(RecipeManager):
             print("No recipes to display.")
             return
 
-    def display_recipes_summary(self, display_only:bool = False):
+    def display_recipes_summary(self, display_only: bool = False):
         self.clear_screen()
         if not self.recipes:
             print("No recipes to display.")
@@ -52,7 +54,9 @@ class TestRecipeManager(RecipeManager):
             entries[str(menu_entry)] = recipe
             print(f"{menu_entry}: {recipe.title}")
 
-        entry = input("Select an entry number or anything else to return to the main menu: ")
+        entry = input(
+            "Select an entry number or anything else to return to the main menu: "
+        )
 
         if entry in entries:
             if display_only:
@@ -87,9 +91,21 @@ class TestRecipeManager(RecipeManager):
             name = input(f"\nPlease enter the name of ingredient {count + 1}: ")
             amount = input("Please enter the amount of the ingredient: ")
             units = input("Please enter the units for the amount: ")
-            alergens = input("Please enter the alergens for the ingredient as a comma seperated list: ").split(",")
-            calories = input("Please enter the amount of calories for the amount of the ingredient: ")
-            ingredients.append(Ingredient(name=name, amount=amount, units=units, alergens=alergens, callories=calories))
+            alergens = input(
+                "Please enter the alergens for the ingredient as a comma seperated list: "
+            ).split(",")
+            calories = input(
+                "Please enter the amount of calories for the amount of the ingredient: "
+            )
+            ingredients.append(
+                Ingredient(
+                    name=name,
+                    amount=amount,
+                    units=units,
+                    alergens=alergens,
+                    callories=calories,
+                )
+            )
 
         new_recipe.add_ingredients(ingredients)
 
@@ -114,11 +130,12 @@ class TestRecipeManager(RecipeManager):
 
         for count in range(number_instructions):
             instruction_level = count + 1
-            instruction = input(f"Please enter instruction for number {instruction_level}: ")
+            instruction = input(
+                f"Please enter instruction for number {instruction_level}: "
+            )
             instructions.append(f"{instruction_level}: {instruction}")
 
         new_recipe.instructions = instructions
-
 
     def add_recipe_from_input(self):
         self.clear_screen()
@@ -133,7 +150,7 @@ class TestRecipeManager(RecipeManager):
         new_recipe.no_servings = no_servings
         new_recipe.calories_per_portion = calories_per_portion
         new_recipe.preperation_time = int(input("Enter the prep time in mins: "))
-        
+
         RecipeManager.add_recipe(self, new_recipe)
         print("Recipe added.")
 
@@ -143,37 +160,67 @@ class TestRecipeManager(RecipeManager):
             print("No valid selection")
             return
 
-        def check_for_update(field:str, current):
+        def check_for_update(field: str, current):
             print(f"Current {field} is: {current}")
             response = input("Do you want to modify y/n?: ")
             if response in ["y", "Y"]:
-               return input(f"Enter the updated {field}: ")
+                return input(f"Enter the updated {field}: ")
             else:
-               return current
+                return current
 
-        updated_recipe.description = check_for_update(field = "Description", current = updated_recipe.description)
-        updated_recipe.no_servings = int(check_for_update(field = "No Servings", current = updated_recipe.no_servings))
-        updated_recipe.calories_per_portion = int(check_for_update(field = "No Calories Per Portion", current = updated_recipe.calories_per_portion))
-        updated_recipe.preperation_time = int(check_for_update(field = "Enter the prep time in mins", current = updated_recipe.preperation_time))
+        updated_recipe.description = check_for_update(
+            field="Description", current=updated_recipe.description
+        )
+        updated_recipe.no_servings = int(
+            check_for_update(field="No Servings", current=updated_recipe.no_servings)
+        )
+        updated_recipe.calories_per_portion = int(
+            check_for_update(
+                field="No Calories Per Portion",
+                current=updated_recipe.calories_per_portion,
+            )
+        )
+        updated_recipe.preperation_time = int(
+            check_for_update(
+                field="Enter the prep time in mins",
+                current=updated_recipe.preperation_time,
+            )
+        )
 
         updated_ingredients = []
 
         for i, ingredient in enumerate(updated_recipe.ingredients):
-            response = input(f"Ingredient is {ingredient.name}, do you want to change or remove y/n?: ")
-            if response in ["y","Y"]:
-                name = input(f"\nPlease enter the name of ingredient or return to remove: {ingredient.name}: ")
+            response = input(
+                f"Ingredient is {ingredient.name}, do you want to change or remove y/n?: "
+            )
+            if response in ["y", "Y"]:
+                name = input(
+                    f"\nPlease enter the name of ingredient or return to remove: {ingredient.name}: "
+                )
                 if name != "":
                     amount = input("Please enter the amount of the ingredient: ")
                     units = input("Please enter the units for the amount: ")
-                    alergens = input("Please enter the alergens for the ingredient as a comma seperated list: ").split(",")
-                    calories = input("Please enter the amount of calories for the amount of the ingredient: ")
-                    updated_ingredients.append(Ingredient(name=name, amount=amount, units=units, alergens=alergens, callories=calories))
+                    alergens = input(
+                        "Please enter the alergens for the ingredient as a comma seperated list: "
+                    ).split(",")
+                    calories = input(
+                        "Please enter the amount of calories for the amount of the ingredient: "
+                    )
+                    updated_ingredients.append(
+                        Ingredient(
+                            name=name,
+                            amount=amount,
+                            units=units,
+                            alergens=alergens,
+                            callories=calories,
+                        )
+                    )
                 else:
                     print(f"Removing ingredient {ingredient.name}")
             else:
                 updated_ingredients.append(ingredient)
 
-        updated_recipe.ingredients = updated_ingredients;
+        updated_recipe.ingredients = updated_ingredients
 
         updated_instructions = []
         instruction_count = 0
@@ -182,25 +229,32 @@ class TestRecipeManager(RecipeManager):
             self.add_instructions_menu(updated_recipe)
         else:
             for i, instruction in enumerate(updated_recipe.instructions):
-                instruction_split = instruction.split(':')
+                instruction_split = instruction.split(":")
                 if len(instruction_split) > 1:
-                    split_instruction = ':'.join(instruction_split[1:])
+                    split_instruction = ":".join(instruction_split[1:])
                 else:
                     split_instruction = instruction_split[0]
-                response = input(f"Instruction is {split_instruction}, do you want to change or remove y/n?: ")
-                if response in ["y","Y"]:
-                    updated_instruction = input(f"Please enter the updated instruction or return to remove: ")
+                response = input(
+                    f"Instruction is {split_instruction}, do you want to change or remove y/n?: "
+                )
+                if response in ["y", "Y"]:
+                    updated_instruction = input(
+                        f"Please enter the updated instruction or return to remove: "
+                    )
                     if updated_instruction != "":
                         instruction_count += 1
-                        updated_instructions.append(f"{instruction_count}: {updated_instruction}")
+                        updated_instructions.append(
+                            f"{instruction_count}: {updated_instruction}"
+                        )
                     else:
                         print(f"Removing instruction {instruction}")
                 else:
                     instruction_count += 1
-                    updated_instructions.append(f"{instruction_count}: {split_instruction}")
+                    updated_instructions.append(
+                        f"{instruction_count}: {split_instruction}"
+                    )
 
-            updated_recipe.instructions = updated_instructions;
-
+            updated_recipe.instructions = updated_instructions
 
     def delete_recipe_from_input(self):
         title_to_delete = input("Enter the name of the recipe to delete: ")
@@ -225,7 +279,9 @@ class TestRecipeManager(RecipeManager):
 
         for recipe in self.recipes:
             try:
-                RecipeManager.write_recipe_to_file(self, recipe, self._path, overwrite=overwrite)
+                RecipeManager.write_recipe_to_file(
+                    self, recipe, self._path, overwrite=overwrite
+                )
             except:
                 print(f"Unable to write {recipe.title}")
 
@@ -257,7 +313,7 @@ class TestRecipeManager(RecipeManager):
         elif choice == "7":
             return False
         elif choice == "8":
-            self.display_recipes_summary(display_only = True)
+            self.display_recipes_summary(display_only=True)
         else:
             print("Invalid choice.")
 
