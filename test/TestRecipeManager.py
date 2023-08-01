@@ -177,26 +177,29 @@ class TestRecipeManager(RecipeManager):
 
         updated_instructions = []
         instruction_count = 0
-        print(len(updated_recipe.instructions))
-        for i, instruction in enumerate(updated_recipe.instructions):
-            instruction_split = instruction.split(':')
-            if len(instruction_split) > 1:
-                split_instruction = ':'.join(instruction_split[1:])
-            else:
-                split_instruction = instruction_split[0]
-            response = input(f"Instruction is {split_instruction}, do you want to change or remove y/n?: ")
-            if response in ["y","Y"]:
-                updated_instruction = input(f"Please enter the updated instruction or return to remove: ")
-                if updated_instruction != "":
-                    instruction_count += 1
-                    updated_instructions.append(f"{instruction_count}: {updated_instruction}")
-                else:
-                    print(f"Removing instruction {instruction}")
-            else:
-                instruction_count += 1
-                updated_instructions.append(f"{instruction_count}: {split_instruction}")
 
-        updated_recipe.instructions = updated_instructions;
+        if len(updated_recipe.instructions) == 0:
+            self.add_instructions_menu(updated_recipe)
+        else:
+            for i, instruction in enumerate(updated_recipe.instructions):
+                instruction_split = instruction.split(':')
+                if len(instruction_split) > 1:
+                    split_instruction = ':'.join(instruction_split[1:])
+                else:
+                    split_instruction = instruction_split[0]
+                response = input(f"Instruction is {split_instruction}, do you want to change or remove y/n?: ")
+                if response in ["y","Y"]:
+                    updated_instruction = input(f"Please enter the updated instruction or return to remove: ")
+                    if updated_instruction != "":
+                        instruction_count += 1
+                        updated_instructions.append(f"{instruction_count}: {updated_instruction}")
+                    else:
+                        print(f"Removing instruction {instruction}")
+                else:
+                    instruction_count += 1
+                    updated_instructions.append(f"{instruction_count}: {split_instruction}")
+
+            updated_recipe.instructions = updated_instructions;
 
 
     def delete_recipe_from_input(self):
