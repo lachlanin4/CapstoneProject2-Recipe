@@ -1,15 +1,24 @@
+"""
+This is the Main window for the GUI
+"""
 import tkinter as tk
 import tkinter.ttk as ttk
+from tkinter import filedialog
 from pathlib import Path
-from yaml import load, dump, Dumper, Loader
 from recipemanager import RecipeManager
 from recipe import Recipe
 from ingredient import Ingredient
-from tkinter import filedialog
 
 
 class MainWindow(tk.Tk):  # 3
+    """
+    Main Window Class
+    """
+
     def __init__(self):
+        """
+        This is the init
+        """
         super().__init__()
 
         self.invitation = "Recipe Manager"
@@ -20,7 +29,10 @@ class MainWindow(tk.Tk):  # 3
 
         lbl_invitation = tk.Label(
             frame_main,
-            text=f"Welcome in Recipe Menager! If you are ready to continue press the button: Run Recipe Menager!",
+            text=str(
+                "Welcome in Recipe Menager! If you are ready to continue"
+                + " press the button: Run Recipe Menager!"
+            ),
         )
         lbl_invitation.pack(padx=10, pady=10)
         btn_show_invitation = ttk.Button(
@@ -29,13 +41,23 @@ class MainWindow(tk.Tk):  # 3
         btn_show_invitation.pack(padx=10, pady=10)
 
     def show_invitation(self):
-        invitation_window = InvitationWindow(
+        """
+        This is the show invitation method
+        """
+        InvitationWindow(
             self, invitation=self.invitation, recipe_manager=self.recipe_manager
         )
 
 
 class InvitationWindow(tk.Toplevel):  # 4
+    """
+    This is the Invitation Window class
+    """
+
     def __init__(self, master, invitation, recipe_manager):
+        """
+        This is the invitation window init method
+        """
         super().__init__(master)
 
         self.recipe_manager = recipe_manager
@@ -55,7 +77,18 @@ class InvitationWindow(tk.Toplevel):  # 4
 
         lbl_instuctions = tk.Label(
             frame_main,
-            text="Instructions\n\n\n\n Menu window: \n 1. Click add recipe- to add recipes. \n 2. Click Display Recipe- to see your recipes. \n 3. Click Edit Recipes- to choose and modify yours recipes. \n 4. Click Remove Recipe- to choose and delete recipe. \n\n\n After every single action like clicking display, add, edit, remove close the actiton window, and continue your actions with recipes in manu window!",
+            text=str(
+                "Instructions\n\n\n\n Menu window:\n"
+                + "1. Click add recipe- to add recipes.\n"
+                + "2. Click Display Recipe- to see your recipes.\n"
+                + "3. Click Edit Recipes- to choose and modify yours "
+                + " recipes. \n "
+                + "4. Click Remove Recipe- to choose and delete recipe. "
+                + "\n\n\n "
+                "After every single action like clicking display, add, "
+                + "edit, remove close the actiton window, and continue "
+                + "your actions with recipes in manu window!"
+            ),
         )
         lbl_instuctions.pack(padx=50, pady=50)
 
@@ -93,36 +126,63 @@ class InvitationWindow(tk.Toplevel):  # 4
         btn_select_to_save_recipes.pack(padx=10, pady=10)
 
     def display(self):
+        """
+        This is the display window method
+        """
         print("Display Recipe button clicked!")
         self.display_window = DisplayWindow(self, self.recipe_manager)
         self.display_window.display_recipes()
 
     def add(self):
+        """
+        This is the add recipe window method
+        """
         print("Add Recipe button clicked!")
-        add_recipe_window = AddRecipeWindow(self, self.recipe_manager)
+        AddRecipeWindow(self, self.recipe_manager)
 
     def edit(self):
+        """
+        This is the edit recipe window method
+        """
         print("Edit Recipe button clicked!")
-        edit_recipe_window = EditRecipeWindow(self, self.recipe_manager)
+        EditRecipeWindow(self, self.recipe_manager)
 
     def remove(self):
+        """
+        This is the remove recipe window method
+        """
         print("Remove Recipe button clicked!")
-        remove_recipe_window = RemoveRecipeWindow(self, self.recipe_manager)
+        RemoveRecipeWindow(self, self.recipe_manager)
 
     def load(self):
+        """
+        This is the load recipes method
+        """
         print("Load Recipes button clicked!")
         folder_selected = filedialog.askdirectory(parent=self)
         self.recipe_manager.read_recipes_from_files(Path(folder_selected))
 
     def save(self):
+        """
+        This is the save recipes method
+        """
         print("Save Recipes button clicked!")
         folder_selected = filedialog.askdirectory(parent=self)
         for recipe in self.recipe_manager.recipes:
-            self.recipe_manager.write_recipe_to_file(recipe=recipe, directory_path=Path(folder_selected), overwrite=True)
+            self.recipe_manager.write_recipe_to_file(
+                recipe=recipe, directory_path=Path(folder_selected), overwrite=True
+            )
 
 
 class DisplayWindow(tk.Toplevel):
+    """
+    This displays the window
+    """
+
     def __init__(self, master, recipe_manager):
+        """
+        This is the init method
+        """
         super().__init__(master)
         self.recipe_manager = recipe_manager
 
@@ -133,9 +193,15 @@ class DisplayWindow(tk.Toplevel):
         self.text_widget.pack(padx=50, pady=50, fill=tk.BOTH, expand=True)
 
     def display_recipes(self):
+        """
+        This is the display recipes
+        """
         self.update_text_widget()
 
     def update_text_widget(self):
+        """
+        This is the update text widget method
+        """
         self.text_widget.delete(1.0, tk.END)
 
         recipes = self.recipe_manager.recipes
@@ -157,7 +223,14 @@ class DisplayWindow(tk.Toplevel):
 
 
 class AddRecipeWindow(tk.Toplevel):
+    """
+    This displays the recipe window
+    """
+
     def __init__(self, master, recipe_manager):
+        """
+        This is the init for the recipe window
+        """
         super().__init__(master)
         self.recipe_manager = recipe_manager
 
@@ -202,6 +275,9 @@ class AddRecipeWindow(tk.Toplevel):
         self.btn_add_recipe.pack(padx=10, pady=5)
 
     def add_recipe(self):
+        """
+        This is the add recipe method
+        """
         recipe_title = self.entry_title.get()
         ingredients_list = []
         recipe_ingredients = self.entry_ingredients.get().split(",")
@@ -241,7 +317,14 @@ class AddRecipeWindow(tk.Toplevel):
 
 
 class RemoveRecipeWindow(tk.Toplevel):
+    """
+    This allows the removal of a recipe
+    """
+
     def __init__(self, master, recipe_manager):
+        """
+        This is the init for the remove recipe window
+        """
         super().__init__(master)
         self.recipe_manager = recipe_manager
 
@@ -262,12 +345,18 @@ class RemoveRecipeWindow(tk.Toplevel):
         self.update_recipe_list()
 
     def update_recipe_list(self):
+        """
+        This is the update recipe list method
+        """
         self.recipe_listbox.delete(0, tk.END)
         recipes = self.recipe_manager.recipes
         for recipe in recipes:
             self.recipe_listbox.insert(tk.END, recipe.title)
 
     def remove_recipe(self):
+        """
+        This is the remove recipe list method
+        """
         selected_index = self.recipe_listbox.curselection()
         if not selected_index:
             return
@@ -297,7 +386,14 @@ class RemoveRecipeWindow(tk.Toplevel):
 
 
 class EditRecipeWindow(tk.Toplevel):
+    """
+    This allows the editing of a recipe
+    """
+
     def __init__(self, master, recipe_manager):
+        """
+        This is the init for the edit recipe window
+        """
         super().__init__(master)
         self.recipe_manager = recipe_manager
 
@@ -318,12 +414,18 @@ class EditRecipeWindow(tk.Toplevel):
         self.update_recipe_list()
 
     def update_recipe_list(self):
+        """
+        This is the update recipe list method
+        """
         self.recipe_listbox.delete(0, tk.END)
         recipes = self.recipe_manager.recipes
         for recipe in recipes:
             self.recipe_listbox.insert(tk.END, recipe.title)
 
     def edit_recipe(self):
+        """
+        This is the edit recipe method
+        """
         selected_index = self.recipe_listbox.curselection()
         if not selected_index:
             return
@@ -337,13 +439,20 @@ class EditRecipeWindow(tk.Toplevel):
                 break
 
         if recipe_to_edit:
-            edit_recipe_window = EditRecipeDetailsWindow(self, recipe_to_edit)
+            EditRecipeDetailsWindow(self, recipe_to_edit)
         else:
             print("Recipe not found!")
 
 
 class EditRecipeDetailsWindow(tk.Toplevel):
+    """
+    This allows the editing of a recipes details
+    """
+
     def __init__(self, master, recipe):
+        """
+        This is the init for the edit recipe details window
+        """
         super().__init__(master)
         self.recipe_manager = master.recipe_manager
         self.recipe_to_edit = recipe
@@ -395,6 +504,9 @@ class EditRecipeDetailsWindow(tk.Toplevel):
         self.btn_save_changes.pack(padx=10, pady=5)
 
     def save_changes(self):
+        """
+        This is the save changes method
+        """
         recipe_title = self.entry_title.get()
         ingredients_list = []
         recipe_ingredients = self.entry_ingredients.get().split(", ")
