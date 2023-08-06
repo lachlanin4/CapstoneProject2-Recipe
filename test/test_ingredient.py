@@ -1,3 +1,7 @@
+"""
+Simple test of ingredient handling
+"""
+
 import sys
 
 sys.path.append("../")
