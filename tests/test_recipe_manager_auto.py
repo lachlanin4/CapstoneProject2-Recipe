@@ -1,24 +1,29 @@
-import sys
-
-sys.path.append("../")
-from recipemanager import RecipeManager
-from recipe import Recipe
-from ingredient import Ingredient
+"""
+Automatic test of recipe manager
+"""
 from pathlib import Path
-from testrecipemanager import TestRecipeManager
+
+from context import recipemanager
+from context import recipe
+from recipemanager import RecipeManager
 
 path = Path("./testdata")
 
 
-def pretty_print_recipe(recipe: Recipe):
+def pretty_print_recipe(_recipe: recipe.Recipe):
+    """
+    Allow simple printing of a recipe
+    """
     print(
-        f"Description: {recipe.description} \n No. Servings: {recipe.no_servings} \n Callories per portion: {recipe.calories_per_portion} \n"
+        str(f"Description: {_recipe.description} \n " +
+            f"No. Servings: {_recipe.no_servings} \n " +
+            f"Callories per portion: {_recipe.calories_per_portion} \n")
     )
     print("Ingredients:")
-    for ingredient in recipe.ingredients:
+    for ingredient in _recipe.ingredients:
         print(ingredient.pretty_format())
     print("\nInstructions:")
-    for instruction in recipe.instructions:
+    for instruction in _recipe.instructions:
         print(f"\n{instruction}")
 
 
@@ -37,7 +42,8 @@ apple_pie = testrecipemanager.recipes[0]
 testrecipemanager.delete_recipe(testrecipemanager.recipes[0])
 
 print(
-    f"Number of recipes in list now {len(testrecipemanager.recipes)} and its {testrecipemanager.recipes[0].title}"
+    str(f"Number of recipes in list now {len(testrecipemanager.recipes)} " +
+        f"and its {testrecipemanager.recipes[0].title}")
 )
 assert len(testrecipemanager.recipes) == no_recipes_read_in - 1
 
@@ -45,7 +51,9 @@ print("Adding apple pie back in")
 testrecipemanager.add_recipe(apple_pie)
 
 print(
-    f"Number of recipes in list now {len(testrecipemanager.recipes)} and its {testrecipemanager.recipes[0].title} and {testrecipemanager.recipes[1].title}"
+    str(f"Number of recipes in list now {len(testrecipemanager.recipes)} " +
+        f"and its {testrecipemanager.recipes[0].title} and " +
+        f"{testrecipemanager.recipes[1].title}")
 )
 
 print("Updating apple pie")

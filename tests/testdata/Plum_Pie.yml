@@ -1,0 +1,76 @@
+!!python/object:recipe.Recipe
+_calories_per_portion: 360
+_description: Simple Plum Pie Recipe
+_ingredients:
+- !!python/object:ingredient.Ingredient
+  _alergens:
+  - Plum
+  _amount: 20.0
+  _callories: 1020
+  _name_of_ingredient: Plum
+  _units: Each
+- !!python/object:ingredient.Ingredient
+  _alergens:
+  - Wheat
+  - Cereals
+  - Gluten
+  _amount: 1000.0
+  _callories: 2090
+  _name_of_ingredient: Plain Flour
+  _units: grammes
+- !!python/object:ingredient.Ingredient
+  _alergens:
+  - Dairy
+  _amount: 1400.0
+  _callories: 10360
+  _name_of_ingredient: Butter
+  _units: grammes
+- !!python/object:ingredient.Ingredient
+  _alergens:
+  - Honey
+  _amount: 8.0
+  _callories: 512
+  _name_of_ingredient: Honey
+  _units: tbsp
+- !!python/object:ingredient.Ingredient
+  _alergens: []
+  _amount: 4
+  _callories: 3
+  _name_of_ingredient: Cinnamon
+  _units: Pinch
+- !!python/object:ingredient.Ingredient
+  _alergens: []
+  _amount: 4
+  _callories: 3
+  _name_of_ingredient: Mixed Spice
+  _units: Pinch
+- !!python/object:ingredient.Ingredient
+  _alergens:
+  - Egg
+  _amount: 4
+  _callories: 360
+  _name_of_ingredient: Beaten Egg
+  _units: Each
+_instructions:
+- STEP 1 - Heat oven to 200C/180C fan/gas 6. To make the pastry, sift the flour into
+  a large mixing bowl and add the butter or margarine. Using your fingers, mix together
+  until the mixture resembles breadcrumbs.
+- "STEP 2 - Add about 3 tbsp cold water \u2013 1 tbsp at a time \u2013 to bind the\
+  \ mixture into a ball. Then wrap it in cling film and leave to chill in the fridge\
+  \ while you prepare the plums, or for 30 mins if you have time."
+- STEP 3 - While the pastry is chilling, cut the plums into even-sized
+  chunks so they all cook in the same amount of time. Put the plums into the pie
+  dish, drizzle over the honey and add the cinnamon, mixed spice and about 2 tbsp
+  water.
+- STEP 4 - Roll out the pastry on a floured work surface until it is large enough
+  to cover the pie dish. Using the rolling pin, carefully lift the pastry and lay
+  it over the top of the plum mixture. Carefully trim off the excess pastry (this
+  can be rerolled and cut into shapes to decorate the pie crust if you like) and press
+  the pastry edges onto the dish to create a seal.
+- STEP 5 - Make a small cut in the pastry so that the air can escape during cooking,
+  then brush with beaten egg to glaze.
+- STEP 6 - Bake the pie in the oven for 15-25 mins until the pastry is golden and
+  sandy in appearance and the plum filling is bubbling and hot.
+_no_servings: 12
+_preperation_time: '30'
+_title: Plum Pie

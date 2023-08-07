@@ -1,15 +1,16 @@
-import sys
+"""
+Simple test of ingredient handling
+"""
 
-sys.path.append("../")
-from ingredient import Ingredient
+from context import ingredient
 
-apple = Ingredient(
+apple = ingredient.Ingredient(
     name="Granny Smith", amount=1.0, units="each", alergens=[], callories=50.0
 )
 
 print(apple.pretty_format())
 
-bread = Ingredient(
+bread = ingredient.Ingredient(
     name="White Bread",
     amount=1.0,
     units="slice",

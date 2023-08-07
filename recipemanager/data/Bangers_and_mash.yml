@@ -1,0 +1,26 @@
+!!python/object:recipe.Recipe
+_calories_per_portion: '234'
+_description: Staple for dinner
+_ingredients:
+- !!python/object:ingredient.Ingredient
+  _alergens: []
+  _amount: 1
+  _callories: 0
+  _name_of_ingredient: bangers
+  _units: each
+- !!python/object:ingredient.Ingredient
+  _alergens: []
+  _amount: 1
+  _callories: 0
+  _name_of_ingredient: mash
+  _units: each
+- !!python/object:ingredient.Ingredient
+  _alergens: []
+  _amount: 1
+  _callories: 0
+  _name_of_ingredient: oil
+  _units: each
+_instructions: ''
+_no_servings: 1
+_preperation_time: '234'
+_title: Bangers and mash
