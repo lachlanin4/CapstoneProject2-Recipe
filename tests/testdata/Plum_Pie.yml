@@ -1,15 +1,15 @@
-!!python/object:recipemanager.recipe.Recipe
+!!python/object:recipe.Recipe
 _calories_per_portion: 360
 _description: Simple Plum Pie Recipe
 _ingredients:
-- !!python/object:recipemanager.ingredient.Ingredient
+- !!python/object:ingredient.Ingredient
   _alergens:
   - Plum
   _amount: 20.0
   _callories: 1020
   _name_of_ingredient: Plum
   _units: Each
-- !!python/object:recipemanager.ingredient.Ingredient
+- !!python/object:ingredient.Ingredient
   _alergens:
   - Wheat
   - Cereals
@@ -18,33 +18,33 @@ _ingredients:
   _callories: 2090
   _name_of_ingredient: Plain Flour
   _units: grammes
-- !!python/object:recipemanager.ingredient.Ingredient
+- !!python/object:ingredient.Ingredient
   _alergens:
   - Dairy
   _amount: 1400.0
   _callories: 10360
   _name_of_ingredient: Butter
   _units: grammes
-- !!python/object:recipemanager.ingredient.Ingredient
+- !!python/object:ingredient.Ingredient
   _alergens:
   - Honey
   _amount: 8.0
   _callories: 512
   _name_of_ingredient: Honey
   _units: tbsp
-- !!python/object:recipemanager.ingredient.Ingredient
+- !!python/object:ingredient.Ingredient
   _alergens: []
   _amount: 4
   _callories: 3
   _name_of_ingredient: Cinnamon
   _units: Pinch
-- !!python/object:recipemanager.ingredient.Ingredient
+- !!python/object:ingredient.Ingredient
   _alergens: []
   _amount: 4
   _callories: 3
   _name_of_ingredient: Mixed Spice
   _units: Pinch
-- !!python/object:recipemanager.ingredient.Ingredient
+- !!python/object:ingredient.Ingredient
   _alergens:
   - Egg
   _amount: 4
