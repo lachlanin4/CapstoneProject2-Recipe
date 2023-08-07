@@ -369,10 +369,10 @@ class CommandLineRecipeManager(RecipeManager):
         return True
 
 if __name__ == "__main__":
-    data_path = input("Please input path to data")
+    data_path = input("Please input path to data: ")
     while not Path(data_path).is_dir():
         print("Path not a directory - please try again")
-        data_path = input("Please input path to data")
+        data_path = input("Please input path to data: ")
 
     clrecipemanager = CommandLineRecipeManager(Path(data_path))
     Run = True
