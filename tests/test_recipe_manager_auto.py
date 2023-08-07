@@ -1,17 +1,16 @@
 """
 Automatic test of recipe manager
 """
-import sys
 from pathlib import Path
 
-sys.path.append("../")
-from recipemanager import RecipeManager
-from recipe import Recipe
+from context import recipemanager
+from context import recipe
+from recipemanager.recipemanager import RecipeManager
 
 path = Path("./testdata")
 
 
-def pretty_print_recipe(_recipe: Recipe):
+def pretty_print_recipe(_recipe: recipe.Recipe):
     """
     Allow simple printing of a recipe
     """

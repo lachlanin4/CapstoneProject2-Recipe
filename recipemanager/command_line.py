@@ -1,20 +1,17 @@
 """
-This allows command line testing of the recipe manager
+This allows command line operation of the recipe manager
 """
-import sys
 import os
 import time
 from pathlib import Path
 
-sys.path.append("../")
-from recipemanager import RecipeManager
 from recipe import Recipe
 from ingredient import Ingredient
+from recipemanager import RecipeManager
 
-
-class TestRecipeManager(RecipeManager):
+class CommandLineRecipeManager(RecipeManager):
     """
-    The is a derived test class for test manager
+    The is a derived class for recipe manager operation via commandline
     """
     def __init__(self, path):
         """
@@ -34,21 +31,21 @@ class TestRecipeManager(RecipeManager):
             os.system("clear")
 
     @classmethod
-    def pretty_print_recipe(cls, recipe: Recipe):
+    def pretty_print_recipe(cls, _recipe: Recipe):
         """
         This prints a recipe
         """
         print(
-            str(f" Title: {recipe.title} \n Description: {recipe.description} \n ") +
-            str(f"No. Servings: {recipe.no_servings} \n ") +
-            str(f"Callories per portion: {recipe.calories_per_portion} \n ") +
-            str(f"Preperation Time: {recipe.preperation_time} \n")
+            str(f" Title: {_recipe.title} \n Description: {_recipe.description} \n ") +
+            str(f"No. Servings: {_recipe.no_servings} \n ") +
+            str(f"Callories per portion: {_recipe.calories_per_portion} \n ") +
+            str(f"Preperation Time: {_recipe.preperation_time} \n")
         )
         print("Ingredients:")
-        for ingredient in recipe.ingredients:
-            print(ingredient.pretty_format())
+        for _ingredient in _recipe.ingredients:
+            print(_ingredient.pretty_format())
         print("\nInstructions:")
-        for instruction in recipe.instructions:
+        for instruction in _recipe.instructions:
             print(f"\n{instruction}")
 
     def display_recipes(self):
@@ -56,9 +53,9 @@ class TestRecipeManager(RecipeManager):
         This displays a recipe
         """
         self.clear_screen()
-        for recipe in self.recipes:
+        for _recipe in self.recipes:
             self.clear_screen()
-            self.pretty_print_recipe(recipe)
+            self.pretty_print_recipe(_recipe)
             input("Please press return for next")
 
         if not self.recipes:
@@ -76,10 +73,10 @@ class TestRecipeManager(RecipeManager):
             return None
         entries = dict()
         menu_entry = 0
-        for i, recipe in enumerate(self.recipes):
+        for i, _recipe in enumerate(self.recipes):
             menu_entry = i + 1
-            entries[str(menu_entry)] = recipe
-            print(f"{menu_entry}: {recipe.title}")
+            entries[str(menu_entry)] = _recipe
+            print(f"{menu_entry}: {_recipe.title}")
 
         entry = input(
             "Select an entry number or anything else to return to the main menu: "
@@ -228,14 +225,15 @@ class TestRecipeManager(RecipeManager):
 
         updated_ingredients = []
 
-        for _i, ingredient in enumerate(updated_recipe.ingredients):
+        for _i, _ingredient in enumerate(updated_recipe.ingredients):
             response = input(
-                f"Ingredient {_i + 1}: is {ingredient.name}, do you want to change or remove y/n?: "
+                f"Ingredient {_i + 1}: is {_ingredient.name}, " +
+                "do you want to change or remove y/n?: "
             )
             if response in ["y", "Y"]:
                 name = input(
                     str("\nPlease enter the name of ingredient or " +
-                        f"return to remove: {ingredient.name}: ")
+                        f"return to remove: {_ingredient.name}: ")
                 )
                 if name != "":
                     amount = input("Please enter the amount of the ingredient: ")
@@ -256,9 +254,9 @@ class TestRecipeManager(RecipeManager):
                         )
                     )
                 else:
-                    print(f"Removing ingredient {ingredient.name}")
+                    print(f"Removing ingredient {_ingredient.name}")
             else:
-                updated_ingredients.append(ingredient)
+                updated_ingredients.append(_ingredient)
 
         updated_recipe.ingredients = updated_ingredients
 
@@ -304,9 +302,9 @@ class TestRecipeManager(RecipeManager):
         title_to_delete = input("Enter the name of the recipe to delete: ")
         found = False
 
-        for recipe in self.recipes:
-            if recipe.title == title_to_delete:
-                self.delete_recipe(recipe)
+        for _recipe in self.recipes:
+            if _recipe.title == title_to_delete:
+                self.delete_recipe(_recipe)
                 print("Recipe deleted successfully.")
                 found = True
                 break
@@ -324,57 +322,62 @@ class TestRecipeManager(RecipeManager):
         if choice in ("Y", "y"):
             overwrite = True
 
-        for recipe in self.recipes:
+        for _recipe in self.recipes:
             try:
                 RecipeManager.write_recipe_to_file(
-                    self, recipe, self._path, overwrite=overwrite
+                    recipe=_recipe, directory_path=self._path, overwrite=overwrite
                 )
             except IOError as _e:
-                print(f"Unable to write {recipe.title}: error {_e}")
-            except Exception as _x:
-                print(f"Error during write {recipe.title}: error {_x}")
+                print(f"Unable to write {_recipe.title}: error {_e}")
+            except Exception as _x: # pylint: disable=W0703
+                print(f"Error during write {_recipe.title}: error {_x}")
 
     def menu(self):
         """
         This displays a menu from the command line
         """
         self.clear_screen()
-        print("1. Do you want to display recipes?")
-        print("2. Do you want to add recipes?")
-        print("3. Do you want to update recipe?")
-        print("4. Do you want to delete recipe?")
-        print("5. Do you want to write recipes to disc?")
-        print("6. Do you want to read recipes from disc?")
-        print("7. Do you want to exit the recipe manager?")
-        print("8. Do you want to display a summary list of recipes?")
+        print("1. Do you want to display a summary list of recipes?")
+        print("2. Do you want to display all recipes?")
+        print("3. Do you want to add recipes?")
+        print("4. Do you want to update recipe?")
+        print("5. Do you want to delete recipe?")
+        print("6. Do you want to write recipes to disc?")
+        print("7. Do you want to read recipes from disc?")
+        print("8. Do you want to exit the recipe manager?")
         choice = input("Enter the number of your choice: ")
 
         if choice == "1":
-            self.display_recipes()
-        elif choice == "2":
-            self.add_recipe_from_input()
-        elif choice == "3":
-            self.update_recipe_from_input()
-        elif choice == "4":
-            self.delete_recipe_from_input()
-        elif choice == "5":
-            self.write_recipe_from_input()
-        elif choice == "6":
-            RecipeManager.read_recipes_from_files(self, self._path)
-        elif choice == "7":
-            return False
-        elif choice == "8":
             self.display_recipes_summary(display_only=True)
+        elif choice == "2":
+            self.display_recipes()
+        elif choice == "3":
+            self.add_recipe_from_input()
+        elif choice == "4":
+            self.update_recipe_from_input()
+        elif choice == "5":
+            self.delete_recipe_from_input()
+        elif choice == "6":
+            self.write_recipe_from_input()
+        elif choice == "7":
+            RecipeManager.read_recipes_from_files(self, self._path)
+        elif choice == "8":
+            return False
         else:
             print("Invalid choice.")
 
         return True
 
 if __name__ == "__main__":
-    testrecipemanager = TestRecipeManager(Path("./testdata"))
+    data_path = input("Please input path to data")
+    while not Path(data_path).is_dir():
+        print("Path not a directory - please try again")
+        data_path = input("Please input path to data")
+
+    clrecipemanager = CommandLineRecipeManager(Path(data_path))
     Run = True
 
     while Run:
-        Run = testrecipemanager.menu()
+        Run = clrecipemanager.menu()
 
     print("Thank you for using recipe manager!")

@@ -1,44 +1,43 @@
 """
 This is a basic test of recipe
 """
-import sys
+# pylint: disable=E0401
+from context import recipe
+# pylint: disable=E0401
+from context import ingredient
 
-sys.path.append("../")
-from recipe import Recipe
-from ingredient import Ingredient
 
-
-def pretty_print_recipe(recipe: Recipe):
+def pretty_print_recipe(_recipe: recipe.Recipe):
     """
     Print the recipe
     """
     print(
-        f"Description: {recipe.description} \n " +
-        f"No. Servings: {recipe.no_servings} \n " +
-        f"Callories per portion: {recipe.calories_per_portion} \n"
+        f"Description: {_recipe.description} \n " +
+        f"No. Servings: {_recipe.no_servings} \n " +
+        f"Callories per portion: {_recipe.calories_per_portion} \n"
     )
     print("Ingredients:")
-    for ingredient in recipe.ingredients:
-        print(ingredient.pretty_format())
+    for _ingredient in _recipe.ingredients:
+        print(_ingredient.pretty_format())
     print("\nInstructions:")
-    for instruction in recipe.instructions:
+    for instruction in _recipe.instructions:
         print(f"\n{instruction}")
 
 
-apple_pie_recipe = Recipe(title="Apple Pie")
+apple_pie_recipe = recipe.Recipe(title="Apple Pie")
 apple_pie_recipe.description = "Simple Traditional Apple Pie Recipe"
 apple_pie_recipe.no_servings = 12
 apple_pie_recipe.calories_per_portion = 250
 apple_pie_ingredients = [
-    Ingredient("Apple", 12.0, "Each", ["Apples"], 1136),
-    Ingredient(
+    ingredient.Ingredient("Apple", 12.0, "Each", ["Apples"], 1136),
+    ingredient.Ingredient(
         "Plain Flour", 1000.0, "grammes", ["Wheat", "Cereals", "Gluten"], 2090
     ),
-    Ingredient("Butter", 1400.0, "grammes", ["Dairy"], 10360),
-    Ingredient("Honey", 8.0, "tbsp", ["Honey"], 512),
-    Ingredient("Cinnamon", 4, "Pinch", [], 3),
-    Ingredient("Mixed Spice", 4, "Pinch", [], 3),
-    Ingredient("Beaten Egg", 4, "Each", ["Egg"], 360),
+    ingredient.Ingredient("Butter", 1400.0, "grammes", ["Dairy"], 10360),
+    ingredient.Ingredient("Honey", 8.0, "tbsp", ["Honey"], 512),
+    ingredient.Ingredient("Cinnamon", 4, "Pinch", [], 3),
+    ingredient.Ingredient("Mixed Spice", 4, "Pinch", [], 3),
+    ingredient.Ingredient("Beaten Egg", 4, "Each", ["Egg"], 360),
 ]
 
 apple_pie_recipe.ingredients = apple_pie_ingredients
@@ -74,7 +73,7 @@ pretty_print_recipe(apple_pie_recipe)
 
 # Add some custard to ingredients list
 apple_pie_recipe.add_ingredients(
-    [Ingredient("Custard", 200, "ml", ["Egg", "Milk"], 600)]
+    [ingredient.Ingredient("Custard", 200, "ml", ["Egg", "Milk"], 600)]
 )
 
 # Add instruction to serve with custard
@@ -94,7 +93,7 @@ print("\n****I'm on a diet no custard for me I might get tempted!****\n")
 
 # Remove ingredient from list
 apple_pie_recipe.remove_ingredient(
-    Ingredient("Custard", 200, "ml", ["Egg", "Milk"], 600)
+    ingredient.Ingredient("Custard", 200, "ml", ["Egg", "Milk"], 600)
 )
 
 # Remove the step from the instructions

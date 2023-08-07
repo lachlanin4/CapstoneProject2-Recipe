@@ -1,0 +1,33 @@
+!!python/object:recipe.Recipe
+_calories_per_portion: 234
+_description: Its a breakfast staple for kings
+_ingredients:
+- !!python/object:ingredient.Ingredient
+  _alergens:
+  - Egg
+  _amount: '3'
+  _callories: '300'
+  _name_of_ingredient: Eggs
+  _units: Each
+- !!python/object:ingredient.Ingredient
+  _alergens:
+  - Bacon
+  _amount: '6'
+  _callories: '234'
+  _name_of_ingredient: bacon
+  _units: Rashers
+- !!python/object:ingredient.Ingredient
+  _alergens:
+  - oil
+  - stuff
+  _amount: '10'
+  _callories: '234'
+  _name_of_ingredient: oil
+  _units: ml
+_instructions:
+- '1: fry eggs'
+- '2: fry bacon'
+- '3: serve'
+_no_servings: 3
+_preperation_time: 12
+_title: Eggs and Bacon
